@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Quiz</title>
+        <style>
+            body {
+                text-align: center;
+                background-color: #40e0d0;
+                color: white;
+            }
+            #frage {
+                font-size: 4.5vw;
+            }
+            button {
+                font-size: 3.5vw;
+                background-color: #ffd700;
+                border: none;
+                color: #c0c0c0;
+                padding-left: 3vw;
+                padding-top: 1vw;
+                padding-right: 3vw;
+                padding-bottom: 1vw;
+                border-radius: 1vw;
+                margin-left: 1vw;
+            }
+            button:hover {
+                background-color: #40e0d0;
+                transition-duration: 3s;
+            }
+        </style>
+    </head>
+    <body>
+        <p id="frage">Wie heißt das 92. Element des Periodensystems?</p>
+        <p>
+            <button id="0" onclick="auswertung(this.id)">Americium</button>
+            <button id="1" onclick="auswertung(this.id)">Uran</button>
+            <button id="2" onclick="auswertung(this.id)">Neptonium</button>
+            <button id="3" onclick="auswertung(this.id)">Plutonium</button>
+        </p>
+
+        <script>
+            fragenliste = ["Wie heißt das 92. Element des Periodensystems?","Wie heißt das 118. Element des Periodensystems?","Welche Ionenladung(en) besitzt Eisen?","Was ist die richtige Verhältnisformel zwischen Eisen(II) und Sulfat(SO4)?","Welche Ladung besitzt Nitrat(NO3)?","Welche Ladung besitzt Ammonium(NH4)?","Welche Ladung besitzt phosphid(p)?","Wie nennt man eine chemische Reaktion die Energie von der Umgebung aufnimmt?","Welche ungefähre Molare Masse hat Oganesson?","Wie nennt man Wasserstoff, dessen Kern 2 Neutronen besitzt?","Welchen Uran-Isotop wird in angereicherter Form in Atombomben eingesetzt?"];
+            antwortenliste = [["Americium", "Uran", "Neptonium","Plutonium"],["Tenessine","Livermorium","Nihonium","Oganesson"],["2+","3+","2+ und 3+","3+ und 4+"],["Fe(SO4)","Fe2(SO4)","Fe(SO4)2","Fe2(SO4)3"],["2-","3-","+","-"],["-","+","3+","2+"],["-","2-","3-","+"],["Endotherm","Ektotherm","Exotherm","Reactotherm"],["[293]","[294]","[295]","[292]"],["Deuterium","Natrium","Mitrium","Trtitium"],["Uran-234","Uran-235","Uran-233","Uran-230"]];
+            richtigeAntwortliste = [1, 3, 2, 0, 3, 1, 2, 0, 1, 3, 3, 2];
+
+            fragenindex = 0;
+
+            document.getElementById("frage").innerHTML = fragenliste[fragenindex];
+
+            punkte = 0;
+
+            function auswertung(id) {
+                if (id == richtigeAntwortliste[fragenindex]) {
+                    alert("Richtig");
+                    fragenindex += 1;
+                    punkte += 1;
+                    if (fragenindex < fragenliste.length) {
+                        document.getElementById("frage").innerHTML = fragenliste[fragenindex];
+                        document.getElementById("0").innerHTML = antwortenliste[fragenindex][0];
+                        document.getElementById("1").innerHTML = antwortenliste[fragenindex][1];
+                        document.getElementById("2").innerHTML = antwortenliste[fragenindex][2];
+                        document.getElementById("3").innerHTML = antwortenliste[fragenindex][3];
+                    } else {
+                        document.getElementById("frage").innerHTML = "Du hast " + punkte + "von " + fragenliste.length + "Punkten erreicht!";
+                    }
+                } else {
+                    alert("Falsch!");
+                    punkte -= 1;
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Quiz</title>
+        <style>
+            body {
+                text-align: center;
+                background-color: #40e0d0;
+                color: white;
+            }
+            #frage {
+                font-size: 4.5vw;
+            }
+            button {
+                font-size: 3.5vw;
+                background-color: #ffd700;
+                border: none;
+                color: #c0c0c0;
+                padding-left: 3vw;
+                padding-top: 1vw;
+                padding-right: 3vw;
+                padding-bottom: 1vw;
+                border-radius: 1vw;
+                margin-left: 1vw;
+            }
+        </style>
+    </head>
+    <body>
+        <p id="frage">Wie heißt das 92. Element des Periodensystems?</p>
+        <p>
+            <button onclick="falsch()">Americium</button>
+            <button onclick="richtig()">Uran</button>
+            <button onclick="falsch()">Neptonium</button>
+            <button onclick="falsch()">Plutonium</button>
+        </p>
+        <script>
+            function richtig() {
+                alert("Richtig");
+            }
+            function falsch() {
+                alert("Falsch");
+            }
+        </script>
+    </body>
+</html>
