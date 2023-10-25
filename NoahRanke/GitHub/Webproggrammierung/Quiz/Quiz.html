@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Quiz</title>
+        <style>
+            body {
+                background-image: url("city.jpeg");
+            
+                text-align: center;
+                background-color: #40e0d0;
+                color: white;
+            }
+            #frage {
+                font-size: 4.5vw;
+            }
+            button {
+                font-size: 3.5vw;
+                background-color: #ffd700;
+                border: none;
+                color: #c0c0c0;
+                padding-left: 3vw;
+                padding-top: 1vw;
+                padding-right: 3vw;
+                padding-bottom: 1vw;
+                border-radius: 1vw;
+                margin-left: 1vw;
+            }
+            button:hover {
+                background-color: #40e0d0;
+                transition-duration: 3s;
+            }
+        </style>
+    </head>
+    <body>
+        <p id="frage">Was ist die Hauptstadt von Deutschland?</p>
+        <p>
+            <button id="0" onclick="auswertung(this.id)">München</button>
+            <button id="1" onclick="auswertung(this.id)">Berlin</button>
+            <button id="2" onclick="auswertung(this.id)">Bielefeld</button>
+            <button id="3" onclick="auswertung(this.id)">Kiel</button>
+        </p>
+
+        <script>
+            fragenliste = ["Was ist die Hauptstadt von Deutschland?","Wie heißt die Hauptstadt von Tansania?","Wie heißt die Hauptstadt von Burkina Faso?","Wie heißt die Hauptstadt von Tadschikistan?","Wie heißt die Hauptstadt von Montserrat?","Wie heißt die Hauptstadt von Sankt Vincent und die Grenadinen?","Wie heißt die Hauptstadt von Anguilla?","Wie heißt die Hauptstadt der Amerikanischen Jungferninseln?","Wie heißt die Hauptstadt von Französisch-Polynesien","Wie viele Kantone hat Luxemburg?","Wie viele Regionen hat Italien?","Du hast es geschaftt!"];
+            antwortenliste = [["München", "Berlin", "Bielefeld","Kiel"],["Alukulubar","Bugum-Bugum","Dodona","Dodoma"],["Ougadugo","Ougadougou","Ouagadougou","Kilima"],["Duschanbe","Aschgabat","Duschambe","Kabul"],["Montserrat City","Kingston","York","Plymouth"],["Kingston","Kingstown","St. Francis","Georgetown"],["The Bottom","The Mountain","The Valley","The Rock"],["Charlotte Amalie","Charlote Amalie","Charlotte Amallie","Amalie City"],["Papete","Papeete","Paapeete","Paapete"],["1","10","21","12"],["17","23","15","20"],["Drück JA","Drück JA","JA!","Drück JA"]];
+            richtigeAntwortliste = [1, 3, 2, 0, 3, 1, 2, 0, 1, 3, 3, 2];
+
+            fragenindex = 0;
+
+            document.getElementById("frage").innerHTML = fragenliste[fragenindex];
+
+            punkte = 0;
+
+            function auswertung(id) {
+                if (id == richtigeAntwortliste[fragenindex]) {
+                    alert("Richtig");
+                    fragenindex += 1;
+                    punkte += 1;
+                    if (fragenindex < fragenliste.length) {
+                        document.getElementById("frage").innerHTML = fragenliste[fragenindex];
+                        document.getElementById("0").innerHTML = antwortenliste[fragenindex][0];
+                        document.getElementById("1").innerHTML = antwortenliste[fragenindex][1];
+                        document.getElementById("2").innerHTML = antwortenliste[fragenindex][2];
+                        document.getElementById("3").innerHTML = antwortenliste[fragenindex][3];
+                    } else {
+                        document.getElementById("frage").innerHTML = "Du hast " + punkte + " von " + fragenliste.length + "Punkten erreicht!";
+                    }
+                } else {
+                    alert("Falsch!");
+                    punkte -= 1;
+                }
+            }
+        </script>
+    </body>
+</html>
