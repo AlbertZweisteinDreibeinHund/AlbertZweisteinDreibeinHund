@@ -41,36 +41,30 @@
             }
 
             function neueAufgabe( ) {
-            zahl1 = Math.ceil(Math.random() * 100);
-            zahl2 = Math.ceil(Math.random() * 100);
-            zufallszahl = Math.ceil(Math.random() * 2);
-            if (zufallszahl == 1) {
-                rechenzeichen = "+";
-                ergebnis = zahl1 + zahl2
-            } else {
-                rechenzeichen = "-";
-                ergebnis = zahl1 - zahl2;
-            }
+                zahl1 = Math.ceil(Math.random() * 100);
+                zahl2 = Math.ceil(Math.random() * 100);
+                zufallszahl = Math.ceil(Math.random() * 2);
+                if (zufallszahl == 1) {
+                    rechenzeichen = "+";
+                    ergebnis = zahl1 + zahl2
+                } else {
+                    rechenzeichen = "-";
+                    ergebnis = zahl1 - zahl2;
+                }
                 document.getElementById("aufgabe").innerHTML = zahl1 + " " + rechenzeichen + " " + zahl2;
-            
+                document.getElementById("eingabe").value ="";
+            }
+            neueAufgabe();
             document.getElementById("aufgabe").style.cssText = "text-align: center; font-size: 40px";
             document.getElementById("rechenzeile").style.textAlign = "center";
             document.getElementById("eingabe").style.cssText = "height: 52px; width: 250px; font-size: 40px";
             document.getElementById("auswertung").style.fontSize = "45px";
 
-            if (zeichengenerator == 0) 
         
             function auswerten() {
-                if (document.getElementById("eingabe").value == (zahl1 + zahl2) + "")  {
+                if (document.getElementById("eingabe").value == ergebnis + "")  {
                     document.getElementById("ergebnis").innerHTML = "Richtig!"
-                    zahl1 = Math.ceil(Math.random() * 100);
-                    zahl2 = Math.ceil(Math.random() * 100);
-                    document.getElementById("eingabe").value = "";
-                    document.getElementById("aufgabe").innerHTML = zahl1 + " + " + zahl2;
-                    document.getElementById("aufgabe").style.cssText = "text-align: center; font-size: 40px";
-                    document.getElementById("rechenzeile").style.textAlign = "center";
-                    document.getElementById("eingabe").style.cssText = "height: 52px; width: 250px; font-size: 40px";
-                    document.getElementById("auswertung").style.fontSize = "45px";
+                    neueAufgabe();
                 } else {
                     document.getElementById("ergebnis").innerHTML = "Falsch!"
 
