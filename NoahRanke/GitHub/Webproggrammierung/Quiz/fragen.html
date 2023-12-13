@@ -5,11 +5,11 @@
         <title>Quiz</title>
         <style>
             body {
-                background-image: url("city.jpeg");
-            
+                background-image: cover;
+                
                 text-align: center;
                 background-color: #40e0d0;
-                color: white;
+                color: black;
             }
             #frage {
                 font-size: 4.5vw;
@@ -41,40 +41,57 @@
                 margin-left: 1vw;
                 margin-top: 1vw;
             }
-            button:hover {
-                background-color: palevioletred;
-                transition-duration: 2s;
+            button:hover{
+                cursor:pointer;
+                background-color: blueviolet;
             }
 
 
 
         </style>
     </head>
-    <body>
+    <body id="body">
         <p id="frage">Was ist die Hauptstadt von Deutschland?</p>
         <p>
-            <button id="0" onclick="auswertung(this.id)">München</button>
-            <button id="1" onclick="auswertung(this.id)">Berlin</button>
-            <button id="2" onclick="auswertung(this.id)">Bielefeld</button>
-            <button id="3" onclick="auswertung(this.id)">Kiel</button>
+            <button id="0" onclick="auswertung(this.id)">1. Durch Sonnenwinde</button>
+            <button id="1" onclick="auswertung(this.id)">2. Aus Lithium</button>
+            <button id="2" onclick="auswertung(this.id)">3. 1. und 4.</button>
+            <button id="3" onclick="auswertung(this.id)">4. Mit Stickstoff in der Stratosphäre</button>
+            <h2 style = "font-size: 4vw" id = "punktanzeige"></h2>
             <h1 style = "font-size: 3vw;"><a href="index.html" target="_blank">Zur Startseite</a></h1>
+    
+
         </p>
 
         <script>
-            fragenliste = ["Was ist die Hauptstadt von Deutschland?","Wie heißt die Hauptstadt von Tansania?","Wie heißt die Hauptstadt von Burkina Faso?","Wie heißt die Hauptstadt von Tadschikistan?","Wie heißt die Hauptstadt von Montserrat?","Wie heißt die Hauptstadt von Sankt Vincent und die Grenadinen?","Wie heißt die Hauptstadt von Anguilla?","Wie heißt die Hauptstadt der Amerikanischen Jungferninseln?","Wie heißt die Hauptstadt von Französisch-Polynesien","Wie viele Kantone hat Luxemburg?","Wie viele Regionen hat Italien?","Du hast es geschaftt!"];
-            antwortenliste = [["München", "Berlin", "Bielefeld","Kiel"],["Alukulubar","Bugum-Bugum","Dodona","Dodoma"],["Ougadugo","Ougadougou","Ouagadougou","Kilima"],["Duschanbe","Aschgabat","Duschambe","Kabul"],["Montserrat City","Kingston","York","Plymouth"],["Kingston","Kingstown","St. Francis","Georgetown"],["The Bottom","The Mountain","The Valley","The Rock"],["Charlotte Amalie","Charlote Amalie","Charlotte Amallie","Amalie City"],["Papete","Papeete","Paapeete","Paapete"],["1","10","21","12"],["17","23","15","20"],["Drück JA","Drück JA","JA!","Drück JA"]];
-            richtigeAntwortliste = [1, 3, 2, 0, 3, 1, 2, 0, 1, 3, 3, 2];
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
 
+            fragenliste = ["Wie entsteht Tritium natürlich?","Was war der beliebteste Jungenerstname von 2022","Wie heißt die Hauptstadt von Burkina Faso?","Wie heißt die Hauptstadt von Tadschikistan?","Wie heißt die Hauptstadt von Montserrat?","Wie heißt die Hauptstadt von Sankt Vincent und die Grenadinen?","Wie heißt die Hauptstadt von Anguilla?","Wie heißt die Hauptstadt der Amerikanischen Jungferninseln?","Wie heißt die Hauptstadt von Französisch-Polynesien","Wie viele Kantone hat Luxemburg?","Wie viele Regionen hat Italien?","", "Wann gab es die erste Glasflasche?", ];
+            antwortenliste = [["Durch Sonnenwinde", "Mit Lithium", "1. und 4.","Mit Stickstoff in der Stratosphäre"],["Max","Johannes💀","Leon","Noah"],["Ougadugo","Ougadougou","Ouagadougou","Kilima"],["Duschanbe","Aschgabat","Duschambe","Kabul"],["Montserrat City","Kingston","York","Plymouth"],["Kingston","Kingstown","St. Francis","Georgetown"],["The Bottom","The Mountain","The Valley","The Rock"],["Charlotte Amalie","Charlote Amalie","Charlotte Amallie","Amalie City"],["Papete","Papeete","Paapeete","Paapete"],["1","10","21","12"],["17","23","15","20"],["nö","Auf Jeden Fall JA","ne","nein"],["2000 V. Chr.", "1750 V. Chr.", "1500 V. Chr.","1250 V. Chr."]];
+            backgroundliste= [,"tritium.png","stadt.jpg","Burkinafaso.jpeg"]
+            richtigeAntwortliste = [2, 3, 2, 0, 3, 1, 2, 0, 1, 3, 3, 1, 2];
+            punkte = 0;
             fragenindex = 0;
+            isSleeping = false;
+            document.getElementById("body").style.backgroundImage = "url(" + backgroundListe[fragenindex] + ")";
+            
+
 
             document.getElementById("frage").innerHTML = fragenliste[fragenindex];
+ 
 
-            punkte = 0;
 
-            function auswertung(id) {
+            async function auswertung(id) {
+                if (isSleeping == false) {
                 if (id == richtigeAntwortliste[fragenindex]) {
-                    alert("Richtig");
+                    document.getElementById(id).style.backgroundColor = "green";
+                    isSleeping = true;
+                    await sleep(500);
+                    document.getElementById(id).style.backgroundColor = "paleturquoise";
                     fragenindex += 1;
+                    document.getElementById("body").style.backgroundImage = "url(" + backgroundListe[fragenindex] + ")";
                     punkte += 1;
                     if (fragenindex < fragenliste.length) {
                         document.getElementById("frage").innerHTML = fragenliste[fragenindex];
@@ -90,10 +107,18 @@
                         document.getElementById("3").style.display = "none";
                     }
                 } else {
-                    alert("Falsch!");
+
+                    document.getElementById(id).style.backgroundColor = "red";
+                    isSleeping = true
+                    await sleep(500);
+                
+                    document.getElementById(id).style.backgroundColor = "paleturquoise";
                     punkte -= 1;
+                
                 }
+                isSleeping = false;
             }
+        }
         </script>
     </body>
 </html>

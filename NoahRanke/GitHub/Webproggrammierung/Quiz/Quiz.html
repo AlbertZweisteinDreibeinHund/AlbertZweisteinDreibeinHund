@@ -65,6 +65,9 @@
                         document.getElementById("3").innerHTML = antwortenliste[fragenindex][3];
                     } else {
                         document.getElementById("frage").innerHTML = "Du hast " + punkte + " von " + fragenliste.length + "Punkten erreicht!";
+
+                        punkteanzeige = "Deine Punktzahl ist " + punkte;
+                document.getElementById("punkteanzeige").innerHTML = punkteanzeige;
                     }
                 } else {
                     alert("Falsch!");
