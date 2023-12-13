@@ -16,7 +16,7 @@
             <input id="eingabe">
             <button id="auswertung" onclick="auswerten()" onclick="löschen()">Antwort abschicken!</button>
         </p>
-        <p id="Ergebnis"></p>
+        <p id="ergebnis" style="text-align: center; font-size: 35px"></p>
 
       
         <script>
@@ -52,7 +52,7 @@
                     ergebnis = zahl1 - zahl2;
                 }
                 document.getElementById("aufgabe").innerHTML = zahl1 + " " + rechenzeichen + " " + zahl2;
-                document.getElementById("eingabe").value ="";
+                document.getElementById("eingabe").value = "";
             }
             neueAufgabe();
             document.getElementById("aufgabe").style.cssText = "text-align: center; font-size: 40px";
