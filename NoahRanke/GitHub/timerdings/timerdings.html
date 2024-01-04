@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dann ist 2025</title>
+        <meta charset="utf-8">
+    </head>
+    <body id="body">
+        <h1 id="überschrift">Dann ist 2025</h1>
+        <p id="wochen"></p>
+        <p>Wochen</p>
+        <p id="tage"></p>
+        <p>Tage</p>
+        <p id="stunden"></p>
+        <p>Stunden</p>
+        <p id="minuten"></p>
+        <p>Minuten</p>
+        <p id="sekunden"></p>
+        <p>Sekunden</p>
+
+        <script>
+
+            document.getElementById("überschrift").style.fontSize = "5vw";
+            document.getElementById("überschrift").style.textAlign = "Center";
+            document.getElementById("überschrift").style.color = "white";
+            document.getElementById("body").style.color = "white";
+            document.getElementById("body").style.fontSize = "2vw";
+            document.getElementById("body").style.textAlign = "Center";
+            document.getElementById("body").style.backgroundImage = "url(feuerwerk2.jpg)";
+            document.getElementById("body").style.backgroundSize = "cover";
+
+
+            function newyear() {
+                let ng = new Date(2025,0,1);
+                const jetzt = new Date();
+
+                const x = ng - jetzt
+
+                const sekunden = x / 1000
+                const minuten = x / 60000
+                const stunden = x / 3600000
+                const tage = x / 86400000
+                const wochen = x / 604800000
+                
+                document.getElementById("wochen").innerHTML = Math.floor(wochen);
+                document.getElementById("tage").innerHTML = Math.floor(tage);
+                document.getElementById("stunden").innerHTML = Math.floor(stunden);
+                document.getElementById("minuten").innerHTML = Math.floor(minuten);
+                document.getElementById("sekunden").innerHTML = Math.floor(sekunden);
+
+            }
+            setInterval(newyear, 1000);
+
+
+
+
+
+
+
+
+
+        </script>
+    </body>
+</html>
