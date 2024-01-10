@@ -35,11 +35,12 @@
 
                 const x = ng - jetzt
 
-                const sekunden = x / 1000
-                const minuten = x / 60000
-                const stunden = x / 3600000
-                const tage = x / 86400000
-                const wochen = x / 604800000
+                const sekunden = (x / 1000) % 60
+                const minuten = (x / 1000 / 60) % 60
+                const stunden = (x / 1000 / 60 / 60) % 24
+                const tage = (x / 1000 / 60 / 60 / 24) % 7
+                const wochen = (x / 1000 / 60 / 60 / 24 / 7) 
+                
                 
                 document.getElementById("wochen").innerHTML = Math.floor(wochen);
                 document.getElementById("tage").innerHTML = Math.floor(tage);
