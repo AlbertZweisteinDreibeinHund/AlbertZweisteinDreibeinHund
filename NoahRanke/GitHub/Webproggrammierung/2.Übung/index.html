@@ -6,10 +6,34 @@
         <style>
             body {
                 text-align: center;
-                background-image: url(hintergrund.jpg);
+                background-image: url(zahlen.webp);
                 background-size: cover;
-                font-family: Helvetica;
+                color: white;
+                height: 100vh;
+                font-family: 'MedievalSharp', cursive;
                 
+            }
+            button {
+                font-size: 2vw;
+                background-color: red;
+                color: white;
+                padding: 1.2vw 4vw;
+                border-radius: 5vw;
+                border: 0.3vw solid black;
+                margin-left: 1vw;
+                margin-top: 0.5vw;
+                text-shadow: none;
+                font-family: 'MedievalSharp', cursive;
+                
+            }
+            button:hover {
+                font-size: 2vw;
+                background-color: aqua;
+                color: black;
+                padding: 1.2vw 4vw;
+                border-radius: 5vw;
+                border: 0.3vw solid black;
+                transition-duration: 0.2s;
             }
             h1 {
                 margin-top: 40vh;
@@ -18,19 +42,38 @@
             }
             a {
                 font-size: 3.5vw;
-                background-color: grey;
-                padding: 1vw 3vw;
+                background-color: red;
+                padding: 1.2vw 4vw;
                 border-radius: 5vw;
+                border: 0.3vw solid black;
+                transition-duration: 0.2s;
             }
             a:hover {
-                background-color: antiquewhite;
+                color: black;
+                background-color: aqua;
                 cursor: pointer;
-                transition-duration: 10s;
+                transition-duration: 0.2s;
+                border-color: white;
+                padding: 1.2vw 20vw;
             }
         </style>
     </head>
     <body>
-        <h1>Willkommen beim Zahlentätsel!</h1>
-        <a>START</a>
+        <div style="text-align: right;">
+            <button onclick="deutsch()">Deutsch</button><button onclick="english()">English</button><button onclick="latein()">Latein</button>
+        </div>
+        <h1 id="h1">Willkommen beim Zahlenrätsel!</h1>
+        <a id="START">START</a>
+        <a id="anleitung" href="anleitung.html" style=text-decoration:none >Anleitung</a>
+        <script>
+            function deutsch() {
+                document.getElementById("h1").innerHTML = "Willkommen beim Zahlenrätsel!";
+                document.getElementById("anleitung").innerHTML = "Die Anleitung";
+            }
+            function english() {
+                document.getElementById("h1").innerHTML = "Welcome to Guess the Number!!";
+                document.getElementById("anleitung").innerHTML = "Da RULES!";
+            }
+        </script>
     </body>
 </html>
