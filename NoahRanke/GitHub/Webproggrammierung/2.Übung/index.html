@@ -1,74 +1,90 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Code</title>
-        <meta charset="utf-8">
+        <meta charset="utf-8" />
+        <title>Zahlenraten</title>
+        <style>
+            body {
+                text-align: center;
+                background-image: url(sug.png);
+                background-size: cover;
+                color: white;
+                height: 100vh;
+                font-family: 'MedievalSharp', cursive;
+                
+            }
+            button {
+                font-size: 2vw;
+                background-color: red;
+                color: black;
+                padding: 1.2vw 4vw;
+                border-radius: 5vw;
+                border: 0.3vw solid black;
+                margin-left: 1vw;
+                margin-top: 0.5vw;
+                text-shadow: none;
+                font-family: 'MedievalSharp', cursive;
+                
+            }
+            button:hover {
+                font-size: 2vw;
+                background-color: aqua;
+                color: black;
+                padding: 1.2vw 4vw;
+                border-radius: 5vw;
+                border: 0.3vw solid black;
+                transition-duration: 0.2s;
+            }
+            h1 {
+                margin-top: 40vh;
+                font-size: 5vw;
+                margin-bottom: 6vh;
+                color: black;
+            }
+            a {
+                font-size: 3.5vw;
+                background-color: red;
+                padding: 1.2vw 4vw;
+                border-radius: 5vw;
+                border: 0.3vw solid black;
+                text-decoration: none;
+                color: black;
+                transition-duration: 0.2s;
+            }
+            a:hover {
+                color: black;
+                background-color: aqua;
+                cursor: pointer;
+                transition-duration: 0.2s;
+                border-color: white;
+                padding: 1.2vw 20vw;
+            }
+        </style>
     </head>
-    <body id="body">
-        <h1 id="Überschrift">JavaScript</h1>
-        <p id="buttonline">
-            <button id="Button" onclick="switchBgcolor()">Hintergrundfarbe ändern</button>
-        </p>
-        <p>
-        <p id="aufgabe">
-        </p>
-        <p id="rechenzeile">
-            <input id="eingabe">
-            <button id="auswertung" onclick="auswerten()" onclick="löschen()">Antwort abschicken!</button>
-        </p>
-        <p id="ergebnis" style="text-align: center; font-size: 35px"></p>
-
-      
+    <body>
+        <div style="text-align: right;">
+            <button onclick="deutsch()">Deutsch</button><button onclick="english()">English</button><button onclick="latein()">Latein</button><button class="sprachebutton" onclick="igbo()">Igbo</button>
+        </div>
+        </div>
+        <h1 id="h1">Willkommen beim Zahlenrätsel!</h1>
+        <a href="zahlenraten.html"  >START</a>
+        <a id="anleitung" href="anleitung.html"  >Anleitung</a>
         <script>
-
-   
-            document.getElementById("Überschrift").style.color = "blue";
-            document.getElementById("Überschrift").style.fontSize = "50px";
-            document.getElementById("Überschrift").style.textAlign = "center";
-            document.getElementById("body").style.backgroundColor = "red";
-            document.getElementById("buttonline").style.textAlign = "center";
-            document.getElementById("Button").style.fontSize = "50px";
-            document.getElementById("Button").style.borderRadius = "50px";
-            document.getElementById("Button").style.padding = "10px 40px";
-
-
-            function switchBgcolor() {
-                rotWert = Math.floor(Math.random() * 256);
-                grünWert = Math.floor(Math.random() * 256);
-                blauWert = Math.floor(Math.random() * 256);
-                rgbWert = "rgb(" + rotWert + ", " + grünWert + "," + blauWert + ")";
-                document.getElementById("body").style.backgroundColor = rgbWert;
+            function deutsch() {
+                document.getElementById("h1").innerHTML = "Willkommen beim Zahlenrätsel!";
+                document.getElementById("anleitung").innerHTML = "Die Anleitung";
             }
-
-            function neueAufgabe( ) {
-                zahl1 = Math.ceil(Math.random() * 100);
-                zahl2 = Math.ceil(Math.random() * 100);
-                zufallszahl = Math.ceil(Math.random() * 2);
-                if (zufallszahl == 1) {
-                    rechenzeichen = "+";
-                    ergebnis = zahl1 + zahl2
-                } else {
-                    rechenzeichen = "-";
-                    ergebnis = zahl1 - zahl2;
-                }
-                document.getElementById("aufgabe").innerHTML = zahl1 + " " + rechenzeichen + " " + zahl2;
-                document.getElementById("eingabe").value = "";
+            function english() {
+                document.getElementById("h1").innerHTML = "Welcome to Guess the Number!";
+                document.getElementById("anleitung").innerHTML = "Da RULES";
             }
-            neueAufgabe();
-            document.getElementById("aufgabe").style.cssText = "text-align: center; font-size: 40px";
-            document.getElementById("rechenzeile").style.textAlign = "center";
-            document.getElementById("eingabe").style.cssText = "height: 52px; width: 250px; font-size: 40px";
-            document.getElementById("auswertung").style.fontSize = "45px";
-
-        
-            function auswerten() {
-                if (document.getElementById("eingabe").value == ergebnis + "")  {
-                    document.getElementById("ergebnis").innerHTML = "Richtig!"
-                    neueAufgabe();
-                } else {
-                    document.getElementById("ergebnis").innerHTML = "Falsch!"
-
-                }
+            function latein() {
+                document.getElementById("h1").innerHTML = "Gratam numerum aenigmatis!";
+                document.getElementById("anleitung").innerHTML = "Instructio";
+            }
+            function igbo() {
+                document.getElementById("h1").innerHTML = "Chọta nọmba nzuzo!";
+                document.getElementById("los").innerHTML = "BỊANỤ!";
             }
         </script>
     </body>
