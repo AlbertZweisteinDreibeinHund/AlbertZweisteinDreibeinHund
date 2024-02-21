@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Zahlenraten</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Italianno&family=MedievalSharp&family=Moirai+One&family=Monoton&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&family=MedievalSharp&family=Moirai+One&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            text-align: center;
+            background-image: url(pi.webp);
+            background-size: cover;
+            height: 100vh;
+        }
+
+        h1 {
+            margin-top: 10vh;
+            font-size: 5vw;
+            margin-bottom: 6vh;
+            color: black;
+            font-family: 'Monoton';
+        }
+
+        input {
+            height: 5vw;
+            font-size: 3vw;
+            width: 20vw;
+            border-top-left-radius: 3vw;
+            border-bottom-left-radius: 3vw;
+            padding-left: 3vw;
+            border-color: green;
+            border-width: 1vw;
+            padding-top: 0;
+            padding-bottom: 0;
+            cursor: text;
+        }
+
+        input:focus {
+            outline: 1px solid black
+        }
+
+        #los {
+            height: 6vw;
+            font-size: 3vw;
+            width: 13vw;
+            border-top-right-radius: 3vw;
+            border-bottom-right-radius: 3vw;
+            border: none;
+            background-color: navy;
+            font-family: 'Monoton';
+            color: white;
+            cursor: pointer;
+        }
+
+        #los:hover {
+            background-color: green;
+            color: black;
+            border-color: white;
+            cursor: pointer;
+            transition-duration: 2s;
+        }
+
+        #new {
+            font-size: 1.5vw;
+            border-radius: 1.5vw;
+            border: 0.1vw solid black;
+            background-color: white;
+            font-family: 'Monoton';
+            padding-top: 0.2vw;
+            padding-bottom: 0.15vw;
+            color: black;
+            text-align: center;
+        }
+
+        #new:hover {
+            background-color: black;
+            color: white;
+            border-color: white;
+            cursor: pointer;
+            transition-duration: 2s;
+            text-align: center;
+        }
+
+        .sprachebutton {
+            font-size: 1.5vw;
+            border-radius: 1.5vw;
+            border: 0.1vw solid black;
+            background-color: white;
+            font-family: 'Monoton';
+            padding-top: 0.2vw;
+            padding-bottom: 0.15vw;
+            color: black;
+            text-align: center;
+        }
+
+        .sprachebutton:hover {
+            background-color: black;
+            color: white;
+            border-color: white;
+            cursor: pointer;
+            transition-duration: 2s;
+            text-align: center;
+        }
+
+        #pa {
+            font-size: 4vw;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #versuche {
+            font-size: 4vw;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #label1 {
+            height: 6.8vw;
+                font-size: 3vw;
+                width: 13vw;
+                border-radius: 3vw;
+                border: none;
+                background-color: aqua;
+                font-family: "Monoton";
+                padding-top: 0.5vw;
+        }
+        #diff {
+            height: 6.8vw;
+                font-size: 3vw;
+                width: 13vw;
+                border-radius: 3vw;
+                border: none;
+                background-color: aqua;
+                font-family: "Monoton";
+                padding-top: 0.5vw;
+                cursor:pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="text-align: right;">
+        <button class="sprachebutton" onclick="deutsch()">Deutsch</button><button class="sprachebutton"
+            onclick="english()">English</button>
+    </div>
+    </div>
+    <h1 id="h1">Finde die geheime Zahl!</h1>
+    <label for="diff" id="label1">Schwierigkeitsgrad ändern:</label>
+    <select name="diff" id="diff">
+        <option value="Level1">Level 1</option>
+        <option value="Level2">Level 2</option>
+        <option value="Level3">Level 3</option>
+    </select>
+    <button id="new" onclick="restart()">Neustart</button>
+    <input id="eingabe">
+    <button id="los" onclick="auswertung()">LOS!</button>
+    <p id="pa"></p>
+    <p id="pa"></p>
+    <p id="versuche"></p>
+    <script>
+        function deutsch() {
+            document.getElementById("h1").innerHTML = "Finde die geheime Zahl!";
+            document.getElementById("los").innerHTML = "LOS!";
+            document.getElementById("new").innerHTML = "NEUSTART";
+        }
+        function english() {
+            document.getElementById("h1").innerHTML = "Find the secret number!";
+            document.getElementById("los").innerHTML = "GO!";
+            document.getElementById("new").innerHTML = "RESTART";
+        }
+
+
+        function restart() {
+            if (document.getElementById("diff").value == "Level1") {
+                    zufallszahl = Math.ceil(Math.random() * 10);
+                    versuche = 0;
+                    document.getElementById("versuche").innerHTML = "";
+                    document.getElementById("pa").innerHTML = "";
+                    document.getElementById("eingabe").value = "";
+                } else if (document.getElementById("diff").value == "Level2") {
+                    zufallszahl = Math.ceil(Math.random() * 50);
+                    versuche = 0;
+                    document.getElementById("versuche").innerHTML = "";
+                    document.getElementById("pa").innerHTML = "";
+                    document.getElementById("eingabe").value = "";
+                } else {
+                    zufallszahl = Math.ceil(Math.random() * 100);
+                    versuche = 0;
+                    document.getElementById("versuche").innerHTML = "";
+                    document.getElementById("pa").innerHTML = "";
+                    document.getElementById("eingabe").value = "";
+                }
+            }
+        restart();
+
+        function auswertung() {
+            if (document.getElementById("eingabe").value == zufallszahl) {
+                document.getElementById("pa").style.color = "green";
+                document.getElementById("pa").innerHTML = "RICHTIG";
+                versuche += 1;
+                document.getElementById("versuche").innerHTML = "Versuche: " + versuche;
+                document.getElementById("eingabe").value = ""
+            } else if (document.getElementById("eingabe").value < zufallszahl) {
+                document.getElementById("pa").style.color = "red";
+                document.getElementById("pa").innerHTML = "Größer";
+                versuche += 1;
+                document.getElementById("versuche").innerHTML = "Versuche: " + versuche;
+                document.getElementById("eingabe").value = ""
+            } else {
+                document.getElementById("pa").style.color = "red";
+                document.getElementById("pa").innerHTML = "Kleiner";
+                versuche += 1;
+                document.getElementById("versuche").innerHTML = "Versuche: " + versuche;
+                document.getElementById("eingabe").value = ""
+            }
+
+        }
+    </script>
+</body>
+
+</html>

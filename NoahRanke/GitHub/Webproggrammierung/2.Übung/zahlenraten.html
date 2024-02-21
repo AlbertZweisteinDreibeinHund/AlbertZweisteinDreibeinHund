@@ -1,136 +1,54 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8" />
-    <title>Zahlenraten</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Italianno&family=MedievalSharp&family=Moirai+One&family=Monoton&display=swap"
-        rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Italianno&family=MedievalSharp&family=Moirai+One&display=swap"
-        rel="stylesheet">
-    <style>
-        body {
-            text-align: center;
-            background-image: url(pi.webp);
-            background-size: cover;
-            height: 100vh;
-        }
-
-        h1 {
-            margin-top: 10vh;
-            font-size: 5vw;
-            margin-bottom: 6vh;
-            color: black;
-            font-family: 'Monoton';
-        }
-
-        input {
-            height: 5vw;
-            font-size: 3vw;
-            width: 20vw;
-            border-top-left-radius: 3vw;
-            border-bottom-left-radius: 3vw;
-            padding-left: 3vw;
-            border-color: green;
-            border-width: 1vw;
-            padding-top: 0;
-            padding-bottom: 0;
-            cursor: text;
-        }
-
-        input:focus {
-            outline: 1px solid black
-        }
-
-        #los {
-            height: 6vw;
-            font-size: 3vw;
-            width: 13vw;
-            border-top-right-radius: 3vw;
-            border-bottom-right-radius: 3vw;
-            border: none;
-            background-color: navy;
-            font-family: 'Monoton';
-            color: white;
-            cursor: pointer;
-        }
-
-        #los:hover {
-            background-color: green;
-            color: black;
-            border-color: white;
-            cursor: pointer;
-            transition-duration: 2s;
-        }
-
-        #new {
-            font-size: 1.5vw;
-            border-radius: 1.5vw;
-            border: 0.1vw solid black;
-            background-color: white;
-            font-family: 'Monoton';
-            padding-top: 0.2vw;
-            padding-bottom: 0.15vw;
-            color: black;
-            text-align: center;
-        }
-
-        #new:hover {
-            background-color: black;
-            color: white;
-            border-color: white;
-            cursor: pointer;
-            transition-duration: 2s;
-            text-align: center;
-        }
-
-        .sprachebutton {
-            font-size: 1.5vw;
-            border-radius: 1.5vw;
-            border: 0.1vw solid black;
-            background-color: white;
-            font-family: 'Monoton';
-            padding-top: 0.2vw;
-            padding-bottom: 0.15vw;
-            color: black;
-            text-align: center;
-        }
-
-        .sprachebutton:hover {
-            background-color: black;
-            color: white;
-            border-color: white;
-            cursor: pointer;
-            transition-duration: 2s;
-            text-align: center;
-        }
-
-        #pa {
-            font-size: 4vw;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        #versuche {
-            font-size: 4vw;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        #label1 {
-            height: 6.8vw;
+    <head>
+        <meta charset="utf-8" />
+        <title>Zahlenraten</title>
+        <style>
+            body {
+                text-align: center;
+                background-image: url("pi.webp");
+                background-color: sienna;
+                font-family:Helvetica;
+            }
+            h1 {
+                margin-top: 20vh;
+                font-size: 5vw;
+                font-family:monospace;
+                color:black;
+                margin-bottom: 6vh;
+            }
+            input {
+                height: 5vw;
+                font-size: 3vw;
+                width: 20vw;
+                border-top-left-radius: 3vw;
+                border-bottom-left-radius: 3vw;
+                padding-left: 3vw;
+                border-color: aqua;
+                border-width: 20px;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+            p {
+                font-size: 3vw;
+            }
+            input:focus {
+                outline: 1px solid black;
+            }
+            #SpecialButton {
+                height: 6.8vw;
                 font-size: 3vw;
                 width: 13vw;
-                border-radius: 3vw;
+                border-top-right-radius: 3vw;
+                border-bottom-right-radius: 3vw;
                 border: none;
                 background-color: aqua;
                 font-family: "Monoton";
                 padding-top: 0.5vw;
-        }
-        #diff {
-            height: 6.8vw;
+                cursor:grab;
+            }
+            .spracheButton {
+                height: 6.8vw;
                 font-size: 3vw;
                 width: 13vw;
                 border-radius: 3vw;
@@ -139,88 +57,143 @@
                 font-family: "Monoton";
                 padding-top: 0.5vw;
                 cursor:pointer;
-        }
-    </style>
-</head>
+            }
+            #restart {
+                height: 6.8vw;
+                font-size: 3vw;
+                width: 13vw;
+                border-radius: 3vw;
+                border: none;
+                background-color: aqua;
+                font-family: "Monoton";
+                padding-top: 0.5vw;
+                cursor:pointer;
+            }
+            #dificulty {
+                height: 6.8vw;
+                font-size: 3vw;
+                width: 13vw;
+                border-radius: 3vw;
+                border: none;
+                background-color: aqua;
+                font-family: "Monoton";
+                padding-top: 0.5vw;
+                cursor:pointer;
+            }
+            #label1 {
+                height: 6.8vw;
+                font-size: 3vw;
+                width: 13vw;
+                border-radius: 3vw;
+                border: none;
+                background-color: aqua;
+                font-family: "Monoton";
+                padding-top: 0.5vw;
+            }
+        </style>
+    </head>
+    <body id="body">
+        <div style="text-align: right;">
+            <button class="spracheButton" onclick="deutsch()">Deutsch</button><button class="spracheButton" onclick="englisch()">English</button><button class="spracheButton" onclick="chinesisch()">中國式的</button><button class="spracheButton" onclick="portugiesisch()">Português</button>
+        </div>
+        </div>
+        <h1 id="h1">Finde die geheime Zahl!</h1>
+        <label for="dificulty" id="label1">Schwierigkeitsgrad:</label>
+        <select name="dificulty" id="dificulty">
+            <option value="Level1">Level 1</option>
+            <option value="Level2">Level 2</option>
+            <option value="Level3">Level 3</option>
+        </select>
+        <button id="restart" onclick="zahl()">Neustart</button>
+        <input id="eingabe">
+        <button id="SpecialButton" onclick="auswertung()">Los</button>
+        <p id="Richtalsch"></p>
+        <p id="versuche"></p>
+        <script>
 
-<body>
-    <div style="text-align: right;">
-        <button class="sprachebutton" onclick="deutsch()">Deutsch</button><button class="sprachebutton"
-            onclick="english()">English</button>
-    </div>
-    </div>
-    <h1 id="h1">Finde die geheime Zahl!</h1>
-    <label for="diff" id="label1">Schwierigkeitsgrad ändern:</label>
-    <select name="diff" id="diff">
-        <option value="Level1">Level 1</option>
-        <option value="Level2">Level 2</option>
-        <option value="Level3">Level 3</option>
-    </select>
-    <button id="new" onclick="restart()">Neustart</button>
-    <input id="eingabe">
-    <button id="los" onclick="auswertung()">LOS!</button>
-    <p id="pa"></p>
-    <p id="pa"></p>
-    <p id="versuche"></p>
-    <script>
-        function deutsch() {
-            document.getElementById("h1").innerHTML = "Finde die geheime Zahl!";
-            document.getElementById("los").innerHTML = "LOS!";
-            document.getElementById("new").innerHTML = "NEUSTART";
-        }
-        function english() {
-            document.getElementById("h1").innerHTML = "Find the secret number!";
-            document.getElementById("los").innerHTML = "GO!";
-            document.getElementById("new").innerHTML = "RESTART";
-        }
+                function sleep(ms) {
+                    return new Promise(resolve => setTimeout(resolve, ms));
+                }
+
+                document.getElementById("body").addEventListener('keypress' , async function(event) {
+                    if(event.key == 'Enter') {
+                        auswertung();
+                    } else if(event.key == 'r') {
+                        await sleep(10);
+                        zahl()
+                    }
+                })
 
 
-        function restart() {
-            if (document.getElementById("diff").value == "Level1") {
+
+
+
+            function deutsch() {
+                document.getElementById("h1").innerHTML = "Finde die geheime Zahl!";
+                document.getElementById("SpecialButton").innerHTML = "Los";
+                document.getElementById("restart").innerHTML = "Neustart";
+            }
+            function englisch() {
+                document.getElementById("h1").innerHTML = "Find the secret number!";
+                document.getElementById("SpecialButton").innerHTML = "Go";
+                document.getElementById("restart").innerHTML = "Restart";
+            }
+            function chinesisch() {
+                document.getElementById("h1").innerHTML = "找到秘密號碼!";
+                document.getElementById("SpecialButton").innerHTML = "去";
+                document.getElementById("restart").innerHTML = "重新開始";
+            }
+            function portugiesisch() {
+                document.getElementById("h1").innerHTML = "Encontre o número secreto!";
+                document.getElementById("SpecialButton").innerHTML = "vai";
+                document.getElementById("restart").innerHTML = "Reiniciar";
+            }
+
+            function zahl() {
+                if (document.getElementById("dificulty").value == "Level1") {
                     zufallszahl = Math.ceil(Math.random() * 10);
                     versuche = 0;
                     document.getElementById("versuche").innerHTML = "";
-                    document.getElementById("pa").innerHTML = "";
+                    document.getElementById("Richtalsch").innerHTML = "";
                     document.getElementById("eingabe").value = "";
-                } else if (document.getElementById("diff").value == "Level2") {
+                } else if (document.getElementById("dificulty").value == "Level2") {
                     zufallszahl = Math.ceil(Math.random() * 50);
                     versuche = 0;
                     document.getElementById("versuche").innerHTML = "";
-                    document.getElementById("pa").innerHTML = "";
+                    document.getElementById("Richtalsch").innerHTML = "";
                     document.getElementById("eingabe").value = "";
                 } else {
                     zufallszahl = Math.ceil(Math.random() * 100);
                     versuche = 0;
                     document.getElementById("versuche").innerHTML = "";
-                    document.getElementById("pa").innerHTML = "";
+                    document.getElementById("Richtalsch").innerHTML = "";
                     document.getElementById("eingabe").value = "";
                 }
             }
-        restart();
 
-        function auswertung() {
-            if (document.getElementById("eingabe").value == zufallszahl) {
-                document.getElementById("pa").style.color = "green";
-                document.getElementById("pa").innerHTML = "RICHTIG";
-                versuche += 1;
-                document.getElementById("versuche").innerHTML = "Versuche: " + versuche;
-                document.getElementById("eingabe").value = ""
-            } else if (document.getElementById("eingabe").value < zufallszahl) {
-                document.getElementById("pa").style.color = "red";
-                document.getElementById("pa").innerHTML = "Größer";
-                versuche += 1;
-                document.getElementById("versuche").innerHTML = "Versuche: " + versuche;
-                document.getElementById("eingabe").value = ""
-            } else {
-                document.getElementById("pa").style.color = "red";
-                document.getElementById("pa").innerHTML = "Kleiner";
-                versuche += 1;
-                document.getElementById("versuche").innerHTML = "Versuche: " + versuche;
-                document.getElementById("eingabe").value = ""
+            zahl();
+
+            function auswertung() {
+                if (document.getElementById("eingabe").value == zufallszahl) {
+                    document.getElementById("Richtalsch").style.color = "green";
+                    document.getElementById("Richtalsch").innerHTML = "RICHTIG!";
+                    document.getElementById("eingabe").value = "";
+                    versuche += 1;
+                    document.getElementById("versuche").innerHTML = "Versuche = " + versuche;
+                } else if (document.getElementById("eingabe").value < zufallszahl) {
+                    document.getElementById("Richtalsch").style.color = "red";
+                    document.getElementById("Richtalsch").innerHTML = "Zu klein!";
+                    versuche += 1;
+                    document.getElementById("eingabe").value = "";
+                    document.getElementById("versuche").innerHTML = "Versuche = " + versuche;
+                } else {
+                    document.getElementById("Richtalsch").style.color = "red";
+                    document.getElementById("Richtalsch").innerHTML = "Zu groß!";
+                    versuche += 1;
+                    document.getElementById("eingabe").value = "";
+                    document.getElementById("versuche").innerHTML = "Versuche = " + versuche;
+                }
             }
-
-        }
-    </script>
-</body>
-
+        </script>
+    </body>
 </html>
