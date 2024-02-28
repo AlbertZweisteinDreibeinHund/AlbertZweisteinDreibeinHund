@@ -69,7 +69,7 @@
                 padding-top: 0.5vw;
                 cursor:pointer;
             }
-            #dificulty {
+            #difficulty {
                 height: 6.8vw;
                 font-size: 3vw;
                 width: 13vw;
@@ -83,12 +83,13 @@
             #label1 {
                 height: 6.8vw;
                 font-size: 3vw;
-                width: 13vw;
-                border-radius: 3vw;
+                border-radius: 10vw;
                 border: none;
                 background-color: aqua;
                 font-family: "Monoton";
                 padding-top: 0.5vw;
+                padding-left: 1vw;
+                padding-right: 1vw;
             }
         </style>
     </head>
@@ -98,8 +99,8 @@
         </div>
         </div>
         <h1 id="h1">Finde die geheime Zahl!</h1>
-        <label for="dificulty" id="label1">Schwierigkeitsgrad:</label>
-        <select name="dificulty" id="dificulty">
+        <label for="difficulty" id="label1">Schwierigkeitsgrad:</label>
+        <select name="difficulty" id="difficulty">
             <option value="Level1">Level 1</option>
             <option value="Level2">Level 2</option>
             <option value="Level3">Level 3</option>
@@ -121,6 +122,12 @@
                     } else if(event.key == 'r') {
                         await sleep(10);
                         zahl()
+                    } else if(event.key == "+") {
+                        zahl()
+                        Plus()
+                    } else if(event.key == "-") {
+                        zahl()
+                        Minus()
                     }
                 })
 
@@ -132,31 +139,35 @@
                 document.getElementById("h1").innerHTML = "Finde die geheime Zahl!";
                 document.getElementById("SpecialButton").innerHTML = "Los";
                 document.getElementById("restart").innerHTML = "Neustart";
+                document.getElementById("label1").innerHTML = "Schwierigkeitsgrad:";
             }
             function englisch() {
                 document.getElementById("h1").innerHTML = "Find the secret number!";
                 document.getElementById("SpecialButton").innerHTML = "Go";
                 document.getElementById("restart").innerHTML = "Restart";
+                document.getElementById("label1").innerHTML = "Difficulty:";
             }
             function chinesisch() {
                 document.getElementById("h1").innerHTML = "找到秘密號碼!";
                 document.getElementById("SpecialButton").innerHTML = "去";
                 document.getElementById("restart").innerHTML = "重新開始";
+                document.getElementById("label1").innerHTML = "困難:";
             }
             function portugiesisch() {
                 document.getElementById("h1").innerHTML = "Encontre o número secreto!";
-                document.getElementById("SpecialButton").innerHTML = "vai";
+                document.getElementById("SpecialButton").innerHTML = "Vai";
                 document.getElementById("restart").innerHTML = "Reiniciar";
+                document.getElementById("label1").innerHTML = "Dificuldade:";
             }
 
             function zahl() {
-                if (document.getElementById("dificulty").value == "Level1") {
+                if (document.getElementById("difficulty").value == "Level1") {
                     zufallszahl = Math.ceil(Math.random() * 10);
                     versuche = 0;
                     document.getElementById("versuche").innerHTML = "";
                     document.getElementById("Richtalsch").innerHTML = "";
                     document.getElementById("eingabe").value = "";
-                } else if (document.getElementById("dificulty").value == "Level2") {
+                } else if (document.getElementById("difficulty").value == "Level2") {
                     zufallszahl = Math.ceil(Math.random() * 50);
                     versuche = 0;
                     document.getElementById("versuche").innerHTML = "";
@@ -172,6 +183,31 @@
             }
 
             zahl();
+
+            async function Plus() {
+                if (document.getElementById("difficulty").value == "Level1") {
+                    document.getElementById("difficulty").value = "Level2"
+                    await sleep(10)
+                    document.getElementById("eingabe").value = "";
+                } else if (document.getElementById("difficulty").value == "Level2") {
+                    document.getElementById("difficulty").value = "Level3"
+                    await sleep(10)
+                    document.getElementById("eingabe").value = "";
+                }
+            }
+
+            async function Minus() {
+                if (document.getElementById("difficulty").value == "Level3") {
+                    document.getElementById("difficulty").value = "Level2"
+                    await sleep(10)
+                    document.getElementById("eingabe").value = "";
+                } else if (document.getElementById("difficulty").value == "Level2") {
+                    document.getElementById("difficulty").value = "Level1"
+                    await sleep(10)
+                    document.getElementById("eingabe").value = "";
+                }
+            }
+
 
             function auswertung() {
                 if (document.getElementById("eingabe").value == zufallszahl) {
