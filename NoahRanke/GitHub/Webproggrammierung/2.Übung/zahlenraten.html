@@ -6,14 +6,14 @@
         <style>
             body {
                 text-align: center;
-                background-image: url("pi.webp");
+                background-image: url("wald.jpg");
                 background-color: sienna;
-                font-family:Helvetica;
+                background-size: cover;
             }
             h1 {
                 margin-top: 20vh;
                 font-size: 5vw;
-                font-family:monospace;
+                font-family: 'MedievalSharp', cursive;
                 color:black;
                 margin-bottom: 6vh;
             }
@@ -24,7 +24,7 @@
                 border-top-left-radius: 3vw;
                 border-bottom-left-radius: 3vw;
                 padding-left: 3vw;
-                border-color: aqua;
+                border-color: red;
                 border-width: 20px;
                 padding-top: 0;
                 padding-bottom: 0;
@@ -39,65 +39,105 @@
                 height: 6.8vw;
                 font-size: 3vw;
                 width: 13vw;
+                color: black;
                 border-top-right-radius: 3vw;
                 border-bottom-right-radius: 3vw;
-                border: none;
-                background-color: aqua;
-                font-family: "Monoton";
-                padding-top: 0.5vw;
-                cursor:grab;
-            }
-            .spracheButton {
-                height: 6.8vw;
-                font-size: 3vw;
-                width: 13vw;
-                border-radius: 3vw;
-                border: none;
-                background-color: aqua;
-                font-family: "Monoton";
+                padding: 1.2vw 4vw;
+                border-radius: 5vw;
+                border: 0.3vw solid black;
+                background-color: red;
                 padding-top: 0.5vw;
                 cursor:pointer;
+                font-family: 'MedievalSharp', cursive;
+            }
+            #SpecialButton:hover {
+                background-color: aqua;
+                color: black;
+                border-radius: 5vw;
+                border: 0.3vw solid black;
+                transition-duration: 0.2s;
+            }
+            .spracheButton {
+                font-size: 2vw;
+                background-color: red;
+                color: black;
+                padding: 1.2vw 4vw;
+                border-radius: 5vw;
+                border: 0.3vw solid black;
+                margin-left: 1vw;
+                margin-top: 0.5vw;
+                text-shadow: none;
+                font-family: 'MedievalSharp', cursive;
+                text-align: center;
+                cursor:pointer;
+            }
+            .spracheButton:hover {
+                font-size: 2vw;
+                background-color: aqua;
+                color: black;
+                padding: 1.2vw 4vw;
+                border-radius: 5vw;
+                border: 0.3vw solid black;
+                transition-duration: 0.2s;
             }
             #restart {
                 height: 6.8vw;
-                font-size: 3vw;
+                font-size: 2vw;
                 width: 13vw;
-                border-radius: 3vw;
-                border: none;
-                background-color: aqua;
-                font-family: "Monoton";
+                border-radius: 5vw;
+                text-align: center;
+                border: 0.3vw solid black;
+                background-color: red;
+                font-family: 'MedievalSharp', cursive;
                 padding-top: 0.5vw;
                 cursor:pointer;
+            }
+            #restart:hover {
+                font-size: 2vw;
+                background-color: aqua;
+                color: black;
+                border-radius: 5vw;
+                border: 0.3vw solid black;
+                transition-duration: 0.2s;
             }
             #difficulty {
                 height: 6.8vw;
                 font-size: 3vw;
                 width: 13vw;
                 border-radius: 3vw;
-                border: none;
-                background-color: aqua;
-                font-family: "Monoton";
+                border: 0.3vw solid black;
+                background-color: red;
+                font-family: 'MedievalSharp', cursive;
                 padding-top: 0.5vw;
                 cursor:pointer;
             }
+            #difficulty:hover {
+                font-size: 2vw;
+                background-color: aqua;
+                color: black;
+                border-radius: 5vw;
+                border: 0.3vw solid black;
+                transition-duration: 0.2s;
+            }
             #label1 {
-                height: 6.8vw;
+                height: 10vw;
                 font-size: 3vw;
                 border-radius: 10vw;
-                border: none;
-                background-color: aqua;
-                font-family: "Monoton";
+                border: 0.3vw solid black;
+                background-color: red;
                 padding-top: 0.5vw;
                 padding-left: 1vw;
                 padding-right: 1vw;
+                font-family: 'MedievalSharp', cursive;
             }
         </style>
     </head>
     <body id="body">
-        <div style="text-align: right;">
-            <button class="spracheButton" onclick="deutsch()">Deutsch</button><button class="spracheButton" onclick="englisch()">English</button><button class="spracheButton" onclick="chinesisch()">中國式的</button><button class="spracheButton" onclick="portugiesisch()">Português</button>
+        <div style="text-align: center;">
+            <a class="spracheButton" href="index.html" style=text-decoration:none>Zurück</a><button class="spracheButton" onclick="deutsch()">Deutsch</button><button class="spracheButton" onclick="englisch()">English</button>
         </div>
         </div>
+
         <h1 id="h1">Finde die geheime Zahl!</h1>
         <label for="difficulty" id="label1">Schwierigkeitsgrad:</label>
         <select name="difficulty" id="difficulty">
@@ -146,18 +186,6 @@
                 document.getElementById("SpecialButton").innerHTML = "Go";
                 document.getElementById("restart").innerHTML = "Restart";
                 document.getElementById("label1").innerHTML = "Difficulty:";
-            }
-            function chinesisch() {
-                document.getElementById("h1").innerHTML = "找到秘密號碼!";
-                document.getElementById("SpecialButton").innerHTML = "去";
-                document.getElementById("restart").innerHTML = "重新開始";
-                document.getElementById("label1").innerHTML = "困難:";
-            }
-            function portugiesisch() {
-                document.getElementById("h1").innerHTML = "Encontre o número secreto!";
-                document.getElementById("SpecialButton").innerHTML = "Vai";
-                document.getElementById("restart").innerHTML = "Reiniciar";
-                document.getElementById("label1").innerHTML = "Dificuldade:";
             }
 
             function zahl() {

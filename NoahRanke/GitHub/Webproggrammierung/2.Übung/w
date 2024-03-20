@@ -1,0 +1,89 @@
+<div style="text-align: center;">
+            <button id="a" onclick="window.location.href='anleitung.html'">Anleitung</button><button onclick="deutsch()">Deutsch</button><button onclick="english()">English</button>
+        </div>
+        </div>
+        
+        <p> <span id="circle" onclick="window.location.href='zahlenraten.html'">S</span></p>
+        <button id="interaktiv">Los!</button>
+        <h1 id="h1">Erwische den Kreis zum Starten!</h1>
+        <script>
+            function deutsch() {
+                document.getElementById("h1").innerHTML = "Willkommen beim Zahlenrätsel!";
+                document.getElementById("anleitung").innerHTML = "Die Anleitung";
+            }
+            function english() {
+                document.getElementById("h1").innerHTML = "Get the circle to start!";
+                document.getElementById("anleitung").innerHTML = "Da RULES";
+            }
+            'use strict';
+            document.addEventListener('DOMContentLoaded', function () {
+                var moveAndChangeColor = [
+                    {
+                        transform: 'translate(0, 0)',
+                        background: 'green'
+                },
+                    {
+                        transform: 'translate(1000px, 450px)',
+                        background: 'lime'
+                },
+                    {
+                        transform: 'translate(1500px, 150px)',
+                        background: 'green'
+                },
+                    {
+                        transform: 'translate(300px, 500px)',
+                        background: 'lime'
+                },
+                    {
+                            transform: 'translate(0px, 0px)',
+                            background: 'lime'
+                    }
+            ];
+                var circle = document.getElementById('circle');
+                document.querySelector('#interaktiv')
+                    .addEventListener('click', function () {
+                        circle.animate(moveAndChangeColor, {
+                            duration: 10000,
+                            iterations: 100,
+                            fill: 'forwards'
+                        });
+                    });
+            });
+        </script>
+    </body>
+</html>
+p {
+    width: 98vw;
+    height: 50vh;
+    border: thin solid;
+}
+
+#circle {
+    display: block;
+    background: red;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: thin solid black;
+}
+h1 {
+    font-size: 5vw;
+    color: black;
+}
+a {
+    font-size: 3.5vw;
+    background-color: red;
+    padding: 1.2vw 4vw;
+    border-radius: 5vw;
+    border: 0.3vw solid black;
+    text-decoration: none;
+    color: black;
+    transition-duration: 0.2s;
+}
+a:hover {
+    color: black;
+    background-color: aqua;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    border-color: white;
+    padding: 1.2vw 20vw;

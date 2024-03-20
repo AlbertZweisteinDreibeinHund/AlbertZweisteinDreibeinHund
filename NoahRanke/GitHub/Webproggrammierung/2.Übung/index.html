@@ -35,10 +35,22 @@
                 border: 0.3vw solid black;
                 transition-duration: 0.2s;
             }
+            p {
+	            width: 98vw;
+	            height: 50vh;
+	            border: thin solid;
+            }
+
+            #circle {
+	            display: block;
+	            background: red;
+	            width: 30px;
+	            height: 30px;
+	            border-radius: 100%;
+	            border: thin solid black;
+            }
             h1 {
-                margin-top: 40vh;
                 font-size: 5vw;
-                margin-bottom: 6vh;
                 color: black;
             }
             a {
@@ -59,32 +71,44 @@
                 border-color: white;
                 padding: 1.2vw 20vw;
             }
+            input {
+                height: 5vw;
+                font-size: 3vw;
+                width: 20vw;
+                border-top-left-radius: 1vw;
+                border-bottom-left-radius: 1vw;
+                border-top-right-radius: 1vw;
+                border-bottom-right-radius: 1vw;
+                border-color: red;
+                border-width: 20px;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
         </style>
     </head>
     <body>
-        <div style="text-align: right;">
-            <button onclick="deutsch()">Deutsch</button><button onclick="english()">English</button><button onclick="latein()">Latein</button><button class="sprachebutton" onclick="igbo()">Igbo</button>
+        <div style="text-align: center;">
+            <button onclick="deutsch()">Deutsch</button><button onclick="english()">English</button>
         </div>
+        <h1 id="h1">Willkommen beim Zahlenrätsel</h1>
+        <div style="margin-top: 20vh">
+            <input id="input" placeholder="Name eingeben">
         </div>
-        <h1 id="h1">Willkommen beim Zahlenrätsel!</h1>
-        <a href="zahlenraten.html"  >START</a>
-        <a id="anleitung" href="anleitung.html"  >Anleitung</a>
+        <div style="margin-top: 4vh">
+            <a  href="zahlenraten.html" style=text-decoration:none>START</a>
+            <a  href="anleitung.html" style=text-decoration:none>Anleitung</a>
+        </div>
         <script>
             function deutsch() {
                 document.getElementById("h1").innerHTML = "Willkommen beim Zahlenrätsel!";
                 document.getElementById("anleitung").innerHTML = "Die Anleitung";
             }
             function english() {
-                document.getElementById("h1").innerHTML = "Welcome to Guess the Number!";
+                document.getElementById("h1").innerHTML = "Get the circle to start!";
                 document.getElementById("anleitung").innerHTML = "Da RULES";
             }
-            function latein() {
-                document.getElementById("h1").innerHTML = "Gratam numerum aenigmatis!";
-                document.getElementById("anleitung").innerHTML = "Instructio";
-            }
-            function igbo() {
-                document.getElementById("h1").innerHTML = "Chọta nọmba nzuzo!";
-                document.getElementById("los").innerHTML = "BỊANỤ!";
+            function nameSetzen() {
+                localStorage.setItem("name", document.getElementById("eingabe").value);
             }
         </script>
     </body>
