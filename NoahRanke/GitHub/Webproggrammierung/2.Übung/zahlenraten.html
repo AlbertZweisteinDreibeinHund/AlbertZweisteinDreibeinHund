@@ -152,9 +152,11 @@
         <p id="versuche"></p>
         <script>
 
-                function sleep(ms) {
-                    return new Promise(resolve => setTimeout(resolve, ms));
-                }
+            
+
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+                    }
 
                 document.getElementById("body").addEventListener('keypress' , async function(event) {
                     if(event.key == 'Enter') {
@@ -175,17 +177,39 @@
 
 
 
-            function deutsch() {
-                document.getElementById("h1").innerHTML = "Finde die geheime Zahl!";
-                document.getElementById("SpecialButton").innerHTML = "Los";
-                document.getElementById("restart").innerHTML = "Neustart";
-                document.getElementById("label1").innerHTML = "Schwierigkeitsgrad:";
+            überschrift_language_list=["Finde die geheime Zahl!","Find the secret number!"]
+            diff_language_list=["Schwierigkeitsgrad","Difficulty"]
+            reSTART_language_list=["Neustart","Restart"]
+            an_language_list=["Anleitung","Instruction"]
+
+
+            function update_language() {
+                document.getElementById("h1").innerHTML = überschrift_language_list[language_index];
+                document.getElementById("label1").innerHTML = diff_language_list[language_index];
+                document.getElementById("restart").innerHTML = reSTART_language_list[language_index];
+                document.getElementById("an").innerHTML = an_language_list[language_index];
+                if (highscore != 0) {
+                    document.getElementById("highscore").innerHTML = highscore_language_list[language_index] + String(highscore)
+                } else {
+                    document.getElementById("highscore").innerHTML = highscore_language_list[language_index] + "-"
+                }
+                if (document.getElementById("par") != "" && bigger != 1) {
+                    if (bigger == 0) {
+                        document.getElementById("par").innerHTML = bigger_language_list[language_index];
+                    } else if (bigger == 2) {
+                        document.getElementById("par").innerHTML = smaller_language_list[language_index];
+                    }
+                }
+                localStorage.setItem("language", language_index)
             }
-            function englisch() {
-                document.getElementById("h1").innerHTML = "Find the secret number!";
-                document.getElementById("SpecialButton").innerHTML = "Go";
-                document.getElementById("restart").innerHTML = "Restart";
-                document.getElementById("label1").innerHTML = "Difficulty:";
+            function deutsch() {
+                language_index = 0
+                update_language()
+            }
+
+            function english() {
+                language_index = 1
+                update_language()
             }
 
             function zahl() {

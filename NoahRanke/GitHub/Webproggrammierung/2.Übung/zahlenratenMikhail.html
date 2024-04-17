@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <title>Zahlenrätsel</title>
+        <style>
+            body {
+                text-align: center;
+                background-image: url('suuuper.webp');
+                font-family: fantasy;
+                background-size: cover;
+                color: white;
+            }
+            h1 {
+                font-size: 4vw;
+            }
+            #h1 {
+                margin-top: 20vh;
+            }
+            h2 {
+                font-size: 3.5vw;
+                margin-top: 0;
+            }
+            p {
+                font-size: 4vw;
+            }
+            #input {
+                height: 8vw;
+                font-size: 4vw;
+                border-top-left-radius: 3vw;
+                border-bottom-left-radius: 3vw;
+            }
+            #input:focus {
+                border: 0.1vw solid red;
+            }
+            #colorpicker {
+                height: 3vw;
+                width: 3vw;
+                background-color: white;
+                border-radius: 20%;
+            }
+            select {
+                font-family: fantasy;
+                font-size: 6vw;
+                background-color: rgb(13, 0, 255);
+                border: 3px solid white;
+                color: white;
+                border-radius: 3vw;
+                padding: 0.5vw;
+            }
+            select:hover {
+                color: black;
+                transition-duration: 0.5s;
+                background-color: skyblue;
+                border: 3px solid black
+            }
+            #schwierigkeiten {
+                font-size: 4vw;
+            }
+            #goButton {
+                font-family: fantasy;
+                font-size: 5vw;
+                background-color: rgb(13, 0, 255);
+                padding: 1vw 2vw;
+                color: white;
+                border: 3px solid white;
+                border-top-right-radius: 3vw;
+                border-bottom-right-radius: 3vw;
+            }
+            #goButton:hover {
+                background-color: skyblue;
+                cursor: pointer;
+                color: black;
+                border:3px solid black;
+                transition-duration: 0.5s;
+                padding-left: 5vw;
+                padding-right: 5vw;
+            }
+            .languageButton {
+                font-family: fantasy;
+                font-size: 3vw;
+                background-color: rgb(13, 0, 255);
+                padding: 1vw 2vw;
+                border-radius: 3vw;
+                color: white;
+                border: 3px solid white
+            }
+            .languageButton:hover {
+                transition-duration: 0.5s;
+                background-color: skyblue;
+                cursor: pointer;
+                color: black;
+                border:3px solid black;
+                padding-left: 10vw;
+                padding-right: 10vw;
+            }
+            a {
+                font-size: 3vw;
+                background-color: orangered;
+                padding: 1vw 2vw;
+                border-radius: 3vw;
+                color: white;
+                border: 3px solid white;
+                text-decoration: none;
+            }
+            a:hover {
+                background-color: skyblue;
+                cursor: pointer;
+                color: black;
+                border:3px solid black;
+                padding-left: 10vw;
+                padding-right: 10vw;
+            }
+            tr {
+                font-size: 3vw;
+            }
+        </style>
+    </head>
+    <body id="body">
+        <a href="index.html" id="linkButton" class="languageButton">zurück</a>
+        <button class="languageButton" onclick="deutsch()">Deutsch</button>
+        <button class="languageButton" onclick="english()">English</button>
+        <button class="languageButton" onclick="russisch()">Русский</button>
+        <h1 id="h1">Finde die geheime Zahl</h1>
+        <div id="wrapper">
+            <div id="div2">
+                <input type="color" id="colorpicker" value="#ffffff" onchange="update_color()">
+                <h2 id="h2"></h2>
+            </div>
+        </div>
+        <h1 id="highscore">Highscore: -</h1>
+        <label id="schwierigkeiten">Wähle Schwierigkeitsgrad aus</label>
+        <select id="selecter" onchange="restart()">
+            <option value="easy">1</option>
+            <option value="normal">2</option>
+            <option value="hard">3</option>
+        </select>
+        <input id="input" placeholder="???">
+        <button id="goButton" onclick="correct()">Los</button>
+        <button class="languageButton" onclick="restart()" id="r_button">Neue Zahl</button>
+        <p id="par"></p>
+        <p id="par2"></p>
+        <p id="par3"></p>
+        <table id="playertable">
+            <tr></tr>
+        </table>
+        <script>
+            inte = Math.floor(Math.random() * 10);
+            trys = 0
+            i = 0
+            ellist = []
+
+            boolean_true_language_list = ["richtig", "true", "правильно"]
+            bigger_language_list = ["Zahl zu groß", "Number too big", "число слишком велико"]
+            smaller_language_list = ["Zahl zu klein","Number too little", "число слишком маленькое"]
+            task_language_list = ["Finde die geheime Zahl", "Find the secret number", "найти секретный номер"]
+            go_language_list = ["Los", "Go", "начни"]
+            label_language_list = ["Wähle Schwierigkeitsgrad aus", "Choose the level of the game", "выберите уровень сложности"]
+            button_language_list = ["zurück", "back", "назад"]
+            r_button_language_list = ["Neue Zahl", "New number", "новое число"]
+            highscore_language_list = ["Beste Leistung: ", "Highscore: ", "Лучший результат: "]
+
+            difficulty_list = ["easy", "normal", "hard"]
+
+            var dict = {
+                leicht: 10,
+                mittel: 100,
+                schwer: 1000
+            }
+
+            highscore_list = []
+            if (localStorage.getItem("playerlist") === null || Array.isArray(JSON.parse(localStorage.getItem("playerlist"))) == false) {
+                player_list = []
+            } else {
+                player_list = JSON.parse(localStorage.getItem("playerlist"))
+            }
+
+            image_list = ["hinter.webp", "suuuper.webp", "hinter2.webp", "hinter3.webp", "hinter4.webp"]
+            image_index = Math.floor(Math.random() * 5)
+            document.getElementById("body").style.backgroundImage = "url(" + image_list[image_index] + ")"
+
+            if (localStorage.getItem("namee") === null) {
+                namme = "anonym"
+            } else {
+                namme = localStorage.getItem("namee")
+            }
+            document.getElementById("h2").innerHTML = namme
+            player_list.push(namme)
+            localStorage.setItem("playerlist", JSON.stringify(player_list))
+            player_list = JSON.parse(localStorage.getItem("playerlist"))
+            //console.log(player_list)
+            //player_list = []
+            //localStorage.setItem("playerlist", JSON.stringify(player_list))
+            //document.getElementById("bestPlayerList").innerHTML = document.getElementById("bestPlayerList").innerHTML + " string"
+            //document.getElementById("bestPlayerList").innerHTML = player_list
+            while (i < player_list.length) {
+                //console.log(player_list)
+                b = document.createElement("tr")
+                b.innerHTML = player_list[i]
+                console.log(b)
+                ellist.push(b)
+                i += 1
+            }
+            document.getElementById("playertable").innerHTML = ellist
+
+            diff_index = 0
+            bigger = 1
+            language_index = localStorage.getItem("language")
+            update_language()
+            if (localStorage.getItem("Highscore") === null) {
+                highscore = 0
+            } else {
+                highscore = localStorage.getItem("Highscore")
+                if (highscore != 0) {
+                    document.getElementById("highscore").innerHTML = highscore_language_list[language_index] + String(highscore)
+                } else {
+                    document.getElementById("highscore").innerHTML = highscore_language_list[language_index] + "-"
+                }
+            }
+
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms))
+            }
+
+            document.getElementById("body").addEventListener('keypress', async function(event) {
+                if (event.key == 'Enter') {
+                    correct()
+                } else if (event.key == 'r') {
+                    restart()
+                    await sleep(50)
+                    document.getElementById("input").value = "";
+                } else if (event.key == '+') {
+                    change_difficulty(true)
+                    await sleep(50)
+                    document.getElementById("input").value = "";
+                } else if (event.key == '-') {
+                    change_difficulty(false)
+                    await sleep(50)
+                    document.getElementById("input").value = "";
+                }
+            })
+           
+            function correct() {
+                trys += 1
+                if (document.getElementById("input").value == String(inte)) {
+                    document.getElementById("par").style.color = "green";
+                    document.getElementById("par").innerHTML = boolean_true_language_list[language_index];
+                    document.getElementById("par3").innerHTML = trys;
+                    if (highscore >= trys || highscore == 0) {
+                        highscore = trys
+                        document.getElementById("highscore").innerHTML = highscore_language_list[language_index] + String(highscore)
+                        localStorage.setItem("Highscore", highscore)
+                    }
+                    inte = Math.floor(Math.random() * 10);
+                    bigger = 1
+                    trys = 0;
+                } else {
+                    document.getElementById("par").style.color = "orange";
+                    if (document.getElementById("input").value > String(inte)) {
+                        document.getElementById("par").innerHTML = bigger_language_list[language_index];
+                        bigger = 2
+                    } else {
+                        document.getElementById("par").innerHTML = smaller_language_list[language_index];
+                        bigger = 0
+                    }
+                    document.getElementById("par3").innerHTML = trys;
+                }
+                document.getElementById("input").value = "";
+            }
+
+            function deutsch() {
+                language_index = 0
+                update_language()
+            }
+
+            function english() {
+                language_index = 1
+                update_language()
+            }
+
+            function russisch() {
+                language_index = 2
+                update_language()
+            }
+
+            function change_difficulty(biggerr) {
+                if (biggerr == true) {
+                    if (diff_index >= 2) {
+                        diff_index = diff_index
+                    } else {
+                        diff_index += 1
+                    }
+                } else {
+                    if (diff_index <= 0) {
+                        diff_index = diff_index
+                    } else {
+                        diff_index -= 1
+                    }
+                }
+                document.getElementById("selecter").value = difficulty_list[diff_index]
+                restart()
+            }
+
+            function update_language() {
+                document.getElementById("h1").innerHTML = task_language_list[language_index];
+                document.getElementById("goButton").innerHTML = go_language_list[language_index];
+                document.getElementById("schwierigkeiten").innerHTML = label_language_list[language_index];
+                document.getElementById("linkButton").innerHTML = button_language_list[language_index];
+                document.getElementById("r_button").innerHTML = r_button_language_list[language_index];
+                if (highscore != 0) {
+                    document.getElementById("highscore").innerHTML = highscore_language_list[language_index] + String(highscore)
+                } else {
+                    document.getElementById("highscore").innerHTML = highscore_language_list[language_index] + "-"
+                }
+                if (document.getElementById("par") != "" && bigger != 1) {
+                    if (bigger == 0) {
+                        document.getElementById("par").innerHTML = bigger_language_list[language_index];
+                    } else if (bigger == 2) {
+                        document.getElementById("par").innerHTML = smaller_language_list[language_index];
+                    }
+                }
+                localStorage.setItem("language", language_index)
+            }
+
+            function update_color() {
+                document.getElementById("h2").style.color = document.getElementById("colorpicker").value
+                document.getElementById("colorpicker").style.backgroundColor = document.getElementById("colorpicker").value
+            }
+
+            function restart() {
+                image_index = Math.floor(Math.random() * 5)
+                document.getElementById("body").style.backgroundImage = "url("+ image_list[image_index] +")"
+                if (document.getElementById("selecter").value == "easy") {
+                    inte = Math.floor(Math.random() * 10);
+                } else if (document.getElementById("selecter").value == "normal") {
+                    inte = Math.floor(Math.random() * 25);
+                } else {
+                    inte = Math.floor(Math.random() * 100);
+                }
+                
+                trys = 0;
+                document.getElementById("par").innerHTML = "";
+                document.getElementById("par3").innerHTML = "";
+                document.getElementById("input").value = "";
+
+                if (document.getElementById("selecter").value == "easy") {
+                    diff_index = 0
+                } else if (document.getElementById("selecter").value == "normal") {
+                    diff_index = 1
+                } else if (document.getElementById("selecter").value == "hard") {
+                    diff_index = 2
+                }
+            }
+        </script>
+    </body>
+</html>

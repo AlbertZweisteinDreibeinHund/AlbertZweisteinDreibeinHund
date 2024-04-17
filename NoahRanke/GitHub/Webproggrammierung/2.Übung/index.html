@@ -95,18 +95,45 @@
             <input id="input" placeholder="Name eingeben">
         </div>
         <div style="margin-top: 4vh">
-            <a  href="zahlenraten.html" style=text-decoration:none>START</a>
-            <a  href="anleitung.html" style=text-decoration:none>Anleitung</a>
+            <a  id="st" href="zahlenraten.html" style=text-decoration:none>START</a>
+            <a  id="an" href="anleitung.html" style=text-decoration:none>Anleitung</a>
         </div>
         <script>
+            überschrift_language_list=["Willkommen beim Zahlenrätsel","Welcome to Number Guessing Game"]
+            input_language_list=["Name eingeben","Insert name"]
+            START_language_list=["START","START"]
+            an_language_list=["Anleitung","Instruction"]
+
+
+            function update_language() {
+                document.getElementById("h1").innerHTML = überschrift_language_list[language_index];
+                document.getElementById("input").placeholder = input_language_list[language_index];
+                document.getElementById("st").innerHTML = START_language_list[language_index];
+                document.getElementById("an").innerHTML = an_language_list[language_index];
+                if (highscore != 0) {
+                    document.getElementById("highscore").innerHTML = highscore_language_list[language_index] + String(highscore)
+                } else {
+                    document.getElementById("highscore").innerHTML = highscore_language_list[language_index] + "-"
+                }
+                if (document.getElementById("par") != "" && bigger != 1) {
+                    if (bigger == 0) {
+                        document.getElementById("par").innerHTML = bigger_language_list[language_index];
+                    } else if (bigger == 2) {
+                        document.getElementById("par").innerHTML = smaller_language_list[language_index];
+                    }
+                }
+                localStorage.setItem("language", language_index)
+            }
             function deutsch() {
-                document.getElementById("h1").innerHTML = "Willkommen beim Zahlenrätsel!";
-                document.getElementById("anleitung").innerHTML = "Die Anleitung";
+                language_index = 0
+                update_language()
             }
+
             function english() {
-                document.getElementById("h1").innerHTML = "Get the circle to start!";
-                document.getElementById("anleitung").innerHTML = "Da RULES";
+                language_index = 1
+                update_language()
             }
+
             function nameSetzen() {
                 localStorage.setItem("name", document.getElementById("eingabe").value);
             }

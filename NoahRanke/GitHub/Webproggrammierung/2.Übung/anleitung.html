@@ -70,12 +70,13 @@
     </head>
     <body>
         <div style="text-align: center;"></div>
-            <button onclick="deutsch()">Deutsch</button><button onclick="english()">English</button><button onclick="latein()">Latein</button>
+            <button onclick="deutsch()">Deutsch</button><button onclick="english()">English</button>
         </div>
         <h1 id="h1">Die Anleitung</h1>
         <p id="r1">1. Der Computer generiert zuffälig eine Zahl, die du erraten musst</p>
         <p id="r2">2. Mit der Zeit wird er dir Tipps geben</p>
-        <p id="r3">3. Falls du sie errätst gewinnst du</p>
+        <p id="r3">2. r=restart +levl up -lvldown</p>
+        <p id="r4">3. Falls du sie errätst gewinnst du</p>
         <p id="Zurück">
         <a id="a" href="index.html" style=text-decoration:none>ZURÜCK</a>
         </p>
@@ -85,25 +86,18 @@
                 document.getElementById("h1").innerHTML = "Die Anleitung";
                 document.getElementById("r1").innerHTML = "1. Der Computer generiert zuffälig eine Zahl, die du erraten musst";
                 document.getElementById("r2").innerHTML = "2. Mit der Zeit wird er dir Tipps geben";
-                document.getElementById("r3").innerHTML = "3. Falls du sie errätst gewinnst du";
+                document.getElementById("r4").innerHTML = "3. Falls du sie errätst gewinnst du";
                 document.getElementById("a").innerHTML = "ZURÜCK";
             }
             function english() {
                 document.getElementById("h1").innerHTML = "Da Rules";
                 document.getElementById("r1").innerHTML = "1. The Computer randomly generates a number, that you have to guess";
                 document.getElementById("r2").innerHTML = "2. He will give you tipps over time";
-                document.getElementById("r3").innerHTML = "3. If you guess it, you'll win";
+                document.getElementById("r4").innerHTML = "3. If you guess it, you'll win";
                 document.getElementById("a").innerHTML = "BACK";
 
             }
-            function latein() {
-                document.getElementById("h1").innerHTML = "Instructio";
-                document.getElementById("r1").innerHTML = "1. Computatrum passim generat numerum quem habes ut autumare";
-                document.getElementById("r2").innerHTML = "2. Plus tempus dabit vobis tips";
-                document.getElementById("r3").innerHTML = "3. Si coniecto, vincis";
-                document.getElementById("a").innerHTML = "RETRO";
 
-            }
-        </script>
+          </script>
     </body> 
 </html>
