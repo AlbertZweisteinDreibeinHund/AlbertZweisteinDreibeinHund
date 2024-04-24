@@ -1,287 +1,296 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Zahlenraten</title>
-        <style>
-            body {
-                text-align: center;
-                background-image: url("wald.jpg");
-                background-color: sienna;
-                background-size: cover;
-            }
-            h1 {
-                margin-top: 20vh;
-                font-size: 5vw;
-                font-family: 'MedievalSharp', cursive;
-                color:black;
-                margin-bottom: 6vh;
-            }
-            input {
-                height: 5vw;
-                font-size: 3vw;
-                width: 20vw;
-                border-top-left-radius: 3vw;
-                border-bottom-left-radius: 3vw;
-                padding-left: 3vw;
-                border-color: red;
-                border-width: 20px;
-                padding-top: 0;
-                padding-bottom: 0;
-            }
-            p {
-                font-size: 3vw;
-            }
-            input:focus {
-                outline: 1px solid black;
-            }
-            #SpecialButton {
-                height: 6.8vw;
-                font-size: 3vw;
-                width: 13vw;
-                color: black;
-                border-top-right-radius: 3vw;
-                border-bottom-right-radius: 3vw;
-                padding: 1.2vw 4vw;
-                border-radius: 5vw;
-                border: 0.3vw solid black;
-                background-color: red;
-                padding-top: 0.5vw;
-                cursor:pointer;
-                font-family: 'MedievalSharp', cursive;
-            }
-            #SpecialButton:hover {
-                background-color: aqua;
-                color: black;
-                border-radius: 5vw;
-                border: 0.3vw solid black;
-                transition-duration: 0.2s;
-            }
-            .spracheButton {
-                font-size: 2vw;
-                background-color: red;
-                color: black;
-                padding: 1.2vw 4vw;
-                border-radius: 5vw;
-                border: 0.3vw solid black;
-                margin-left: 1vw;
-                margin-top: 0.5vw;
-                text-shadow: none;
-                font-family: 'MedievalSharp', cursive;
-                text-align: center;
-                cursor:pointer;
-            }
-            .spracheButton:hover {
-                font-size: 2vw;
-                background-color: aqua;
-                color: black;
-                padding: 1.2vw 4vw;
-                border-radius: 5vw;
-                border: 0.3vw solid black;
-                transition-duration: 0.2s;
-            }
-            #restart {
-                height: 6.8vw;
-                font-size: 2vw;
-                width: 13vw;
-                border-radius: 5vw;
-                text-align: center;
-                border: 0.3vw solid black;
-                background-color: red;
-                font-family: 'MedievalSharp', cursive;
-                padding-top: 0.5vw;
-                cursor:pointer;
-            }
-            #restart:hover {
-                font-size: 2vw;
-                background-color: aqua;
-                color: black;
-                border-radius: 5vw;
-                border: 0.3vw solid black;
-                transition-duration: 0.2s;
-            }
-            #difficulty {
-                height: 6.8vw;
-                font-size: 3vw;
-                width: 13vw;
-                border-radius: 3vw;
-                border: 0.3vw solid black;
-                background-color: red;
-                font-family: 'MedievalSharp', cursive;
-                padding-top: 0.5vw;
-                cursor:pointer;
-            }
-            #difficulty:hover {
-                font-size: 2vw;
-                background-color: aqua;
-                color: black;
-                border-radius: 5vw;
-                border: 0.3vw solid black;
-                transition-duration: 0.2s;
-            }
-            #label1 {
-                height: 10vw;
-                font-size: 3vw;
-                border-radius: 10vw;
-                border: 0.3vw solid black;
-                background-color: red;
-                padding-top: 0.5vw;
-                padding-left: 1vw;
-                padding-right: 1vw;
-                font-family: 'MedievalSharp', cursive;
-            }
-        </style>
-    </head>
-    <body id="body">
-        <div style="text-align: center;">
-            <a class="spracheButton" href="index.html" style=text-decoration:none>Zurück</a><button class="spracheButton" onclick="deutsch()">Deutsch</button><button class="spracheButton" onclick="englisch()">English</button>
-        </div>
-        </div>
 
-        <h1 id="h1">Finde die geheime Zahl!</h1>
-        <label for="difficulty" id="label1">Schwierigkeitsgrad:</label>
-        <select name="difficulty" id="difficulty">
-            <option value="Level1">Level 1</option>
-            <option value="Level2">Level 2</option>
-            <option value="Level3">Level 3</option>
-        </select>
-        <button id="restart" onclick="zahl()">Neustart</button>
-        <input id="eingabe">
-        <button id="SpecialButton" onclick="auswertung()">Los</button>
-        <p id="Richtalsch"></p>
-        <p id="versuche"></p>
-        <script>
+<head>
+    <meta charset="utf-8" />
+    <title>Zahlenraten</title>
+    <style>
+        body {
+            text-align: center;
+            background-image: url("wald.jpg");
+            background-color: sienna;
+            background-size: cover;
+        }
 
-            
+        h1 {
+            margin-top: 20vh;
+            font-size: 5vw;
+            font-family: 'MedievalSharp', cursive;
+            color: black;
+            margin-bottom: 6vh;
+        }
 
-            function sleep(ms) {
-                return new Promise(resolve => setTimeout(resolve, ms));
-                    }
+        input {
+            height: 5vw;
+            font-size: 3vw;
+            width: 20vw;
+            border-top-left-radius: 3vw;
+            border-bottom-left-radius: 3vw;
+            padding-left: 3vw;
+            border-color: red;
+            border-width: 20px;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
 
-                document.getElementById("body").addEventListener('keypress' , async function(event) {
-                    if(event.key == 'Enter') {
-                        auswertung();
-                    } else if(event.key == 'r') {
-                        await sleep(10);
-                        zahl()
-                    } else if(event.key == "+") {
-                        zahl()
-                        Plus()
-                    } else if(event.key == "-") {
-                        zahl()
-                        Minus()
-                    }
-                })
+        p {
+            font-size: 3vw;
+        }
+
+        input:focus {
+            outline: 1px solid black;
+        }
+
+        #SpecialButton {
+            height: 6.8vw;
+            font-size: 3vw;
+            width: 13vw;
+            color: black;
+            border-top-right-radius: 3vw;
+            border-bottom-right-radius: 3vw;
+            padding: 1.2vw 4vw;
+            border-radius: 5vw;
+            border: 0.3vw solid black;
+            background-color: red;
+            padding-top: 0.5vw;
+            cursor: pointer;
+            font-family: 'MedievalSharp', cursive;
+        }
+
+        #SpecialButton:hover {
+            background-color: aqua;
+            color: black;
+            border-radius: 5vw;
+            border: 0.3vw solid black;
+            transition-duration: 0.2s;
+        }
+
+        .spracheButton {
+            font-size: 2vw;
+            background-color: red;
+            color: black;
+            padding: 1.2vw 4vw;
+            border-radius: 5vw;
+            border: 0.3vw solid black;
+            margin-left: 1vw;
+            margin-top: 0.5vw;
+            text-shadow: none;
+            font-family: 'MedievalSharp', cursive;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .spracheButton:hover {
+            font-size: 2vw;
+            background-color: aqua;
+            color: black;
+            padding: 1.2vw 4vw;
+            border-radius: 5vw;
+            border: 0.3vw solid black;
+            transition-duration: 0.2s;
+        }
+
+        #restart {
+            height: 6.8vw;
+            font-size: 2vw;
+            width: 13vw;
+            border-radius: 5vw;
+            text-align: center;
+            border: 0.3vw solid black;
+            background-color: red;
+            font-family: 'MedievalSharp', cursive;
+            padding-top: 0.5vw;
+            cursor: pointer;
+        }
+
+        #restart:hover {
+            font-size: 2vw;
+            background-color: aqua;
+            color: black;
+            border-radius: 5vw;
+            border: 0.3vw solid black;
+            transition-duration: 0.2s;
+        }
+
+        #difficulty {
+            height: 6.8vw;
+            font-size: 3vw;
+            width: 13vw;
+            border-radius: 3vw;
+            border: 0.3vw solid black;
+            background-color: red;
+            font-family: 'MedievalSharp', cursive;
+            padding-top: 0.5vw;
+            cursor: pointer;
+        }
+
+        #difficulty:hover {
+            font-size: 2vw;
+            background-color: aqua;
+            color: black;
+            border-radius: 5vw;
+            border: 0.3vw solid black;
+            transition-duration: 0.2s;
+        }
+
+        #label1 {
+            height: 10vw;
+            font-size: 3vw;
+            border-radius: 10vw;
+            border: 0.3vw solid black;
+            background-color: red;
+            padding-top: 0.5vw;
+            padding-left: 1vw;
+            padding-right: 1vw;
+            font-family: 'MedievalSharp', cursive;
+        }
+    </style>
+</head>
+
+<body id="body">
+    <div style="text-align: center;">
+        <a class="spracheButton" href="index.html" style=text-decoration:none>Zurück</a><button class="spracheButton"
+            onclick="deutsch()">Deutsch</button><button class="spracheButton" onclick="english()">English</button>
+    </div>
+    </div>
+
+    <h1 id="h1">Finde die geheime Zahl!</h1>
+    <label for="difficulty" id="label1">Schwierigkeitsgrad:</label>
+    <select name="difficulty" id="difficulty">
+        <option value="Level1">Level 1</option>
+        <option value="Level2">Level 2</option>
+        <option value="Level3">Level 3</option>
+    </select>
+    <button id="restart" onclick="zahl()">Neustart</button>
+    <input id="eingabe">
+    <button id="SpecialButton" onclick="auswertung()">Los</button>
+    <p id="Richtalsch"></p>
+    <p id="versuche"></p>
+    <script>
 
 
+        überschrift_language_list = ["Finde die geheime Zahl, " + localStorage.getItem("name") + "!", "Find the secret number!"];
+        diff_language_list = ["Schwierigkeitsgrad:", "Difficulty:"];
+        reSTART_language_list = ["Neustart", "Restart"];
+        BG_language_list = ["Los", "Go"];
 
+        language_index = 0;
 
+        function deutsch() {
+            language_index = 0
+            update_language()
+        }
 
-            überschrift_language_list=["Finde die geheime Zahl!","Find the secret number!"]
-            diff_language_list=["Schwierigkeitsgrad","Difficulty"]
-            reSTART_language_list=["Neustart","Restart"]
-            an_language_list=["Anleitung","Instruction"]
+        function english() {
+            language_index = 1
+            update_language()
+        }
 
+        if (localStorage.getItem("language") == 0)
+            deutsch();
+        else
+            english();
 
-            function update_language() {
-                document.getElementById("h1").innerHTML = überschrift_language_list[language_index];
-                document.getElementById("label1").innerHTML = diff_language_list[language_index];
-                document.getElementById("restart").innerHTML = reSTART_language_list[language_index];
-                document.getElementById("an").innerHTML = an_language_list[language_index];
-                if (highscore != 0) {
-                    document.getElementById("highscore").innerHTML = highscore_language_list[language_index] + String(highscore)
-                } else {
-                    document.getElementById("highscore").innerHTML = highscore_language_list[language_index] + "-"
-                }
-                if (document.getElementById("par") != "" && bigger != 1) {
-                    if (bigger == 0) {
-                        document.getElementById("par").innerHTML = bigger_language_list[language_index];
-                    } else if (bigger == 2) {
-                        document.getElementById("par").innerHTML = smaller_language_list[language_index];
-                    }
-                }
-                localStorage.setItem("language", language_index)
+        function update_language() {
+            document.getElementById("h1").innerHTML = überschrift_language_list[language_index];
+            document.getElementById("label1").innerHTML = diff_language_list[language_index];
+            document.getElementById("restart").innerHTML = reSTART_language_list[language_index];
+            document.getElementById("SpecialButton").innerHTML = BG_language_list[language_index];
+            localStorage.setItem("language", language_index);
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        document.getElementById("body").addEventListener('keypress', async function (event) {
+            if (event.key == 'Enter') {
+                auswertung();
+            } else if (event.key == 'r') {
+                await sleep(10);
+                zahl()
+            } else if (event.key == "+") {
+                zahl()
+                Plus()
+            } else if (event.key == "-") {
+                zahl()
+                Minus()
             }
-            function deutsch() {
-                language_index = 0
-                update_language()
+        })
+
+
+
+        function zahl() {
+            if (document.getElementById("difficulty").value == "Level1") {
+                zufallszahl = Math.ceil(Math.random() * 10);
+                versuche = 0;
+                document.getElementById("versuche").innerHTML = "";
+                document.getElementById("Richtalsch").innerHTML = "";
+                document.getElementById("eingabe").value = "";
+            } else if (document.getElementById("difficulty").value == "Level2") {
+                zufallszahl = Math.ceil(Math.random() * 50);
+                versuche = 0;
+                document.getElementById("versuche").innerHTML = "";
+                document.getElementById("Richtalsch").innerHTML = "";
+                document.getElementById("eingabe").value = "";
+            } else {
+                zufallszahl = Math.ceil(Math.random() * 100);
+                versuche = 0;
+                document.getElementById("versuche").innerHTML = "";
+                document.getElementById("Richtalsch").innerHTML = "";
+                document.getElementById("eingabe").value = "";
             }
+        }
 
-            function english() {
-                language_index = 1
-                update_language()
+        zahl();
+
+        async function Plus() {
+            if (document.getElementById("difficulty").value == "Level1") {
+                document.getElementById("difficulty").value = "Level2"
+                await sleep(10)
+                document.getElementById("eingabe").value = "";
+            } else if (document.getElementById("difficulty").value == "Level2") {
+                document.getElementById("difficulty").value = "Level3"
+                await sleep(10)
+                document.getElementById("eingabe").value = "";
             }
+        }
 
-            function zahl() {
-                if (document.getElementById("difficulty").value == "Level1") {
-                    zufallszahl = Math.ceil(Math.random() * 10);
-                    versuche = 0;
-                    document.getElementById("versuche").innerHTML = "";
-                    document.getElementById("Richtalsch").innerHTML = "";
-                    document.getElementById("eingabe").value = "";
-                } else if (document.getElementById("difficulty").value == "Level2") {
-                    zufallszahl = Math.ceil(Math.random() * 50);
-                    versuche = 0;
-                    document.getElementById("versuche").innerHTML = "";
-                    document.getElementById("Richtalsch").innerHTML = "";
-                    document.getElementById("eingabe").value = "";
-                } else {
-                    zufallszahl = Math.ceil(Math.random() * 100);
-                    versuche = 0;
-                    document.getElementById("versuche").innerHTML = "";
-                    document.getElementById("Richtalsch").innerHTML = "";
-                    document.getElementById("eingabe").value = "";
-                }
+        async function Minus() {
+            if (document.getElementById("difficulty").value == "Level3") {
+                document.getElementById("difficulty").value = "Level2"
+                await sleep(10)
+                document.getElementById("eingabe").value = "";
+            } else if (document.getElementById("difficulty").value == "Level2") {
+                document.getElementById("difficulty").value = "Level1"
+                await sleep(10)
+                document.getElementById("eingabe").value = "";
             }
+        }
 
-            zahl();
 
-            async function Plus() {
-                if (document.getElementById("difficulty").value == "Level1") {
-                    document.getElementById("difficulty").value = "Level2"
-                    await sleep(10)
-                    document.getElementById("eingabe").value = "";
-                } else if (document.getElementById("difficulty").value == "Level2") {
-                    document.getElementById("difficulty").value = "Level3"
-                    await sleep(10)
-                    document.getElementById("eingabe").value = "";
-                }
+        function auswertung() {
+            if (document.getElementById("eingabe").value == zufallszahl) {
+                document.getElementById("Richtalsch").style.color = "green";
+                document.getElementById("Richtalsch").innerHTML = "RICHTIG!";
+                document.getElementById("eingabe").value = "";
+                versuche += 1;
+                document.getElementById("versuche").innerHTML = "Versuche = " + versuche;
+            } else if (document.getElementById("eingabe").value < zufallszahl) {
+                document.getElementById("Richtalsch").style.color = "red";
+                document.getElementById("Richtalsch").innerHTML = "Zu klein!";
+                versuche += 1;
+                document.getElementById("eingabe").value = "";
+                document.getElementById("versuche").innerHTML = "Versuche = " + versuche;
+            } else {
+                document.getElementById("Richtalsch").style.color = "red";
+                document.getElementById("Richtalsch").innerHTML = "Zu groß!";
+                versuche += 1;
+                document.getElementById("eingabe").value = "";
+                document.getElementById("versuche").innerHTML = "Versuche = " + versuche;
             }
+        }
+    </script>
+</body>
 
-            async function Minus() {
-                if (document.getElementById("difficulty").value == "Level3") {
-                    document.getElementById("difficulty").value = "Level2"
-                    await sleep(10)
-                    document.getElementById("eingabe").value = "";
-                } else if (document.getElementById("difficulty").value == "Level2") {
-                    document.getElementById("difficulty").value = "Level1"
-                    await sleep(10)
-                    document.getElementById("eingabe").value = "";
-                }
-            }
-
-
-            function auswertung() {
-                if (document.getElementById("eingabe").value == zufallszahl) {
-                    document.getElementById("Richtalsch").style.color = "green";
-                    document.getElementById("Richtalsch").innerHTML = "RICHTIG!";
-                    document.getElementById("eingabe").value = "";
-                    versuche += 1;
-                    document.getElementById("versuche").innerHTML = "Versuche = " + versuche;
-                } else if (document.getElementById("eingabe").value < zufallszahl) {
-                    document.getElementById("Richtalsch").style.color = "red";
-                    document.getElementById("Richtalsch").innerHTML = "Zu klein!";
-                    versuche += 1;
-                    document.getElementById("eingabe").value = "";
-                    document.getElementById("versuche").innerHTML = "Versuche = " + versuche;
-                } else {
-                    document.getElementById("Richtalsch").style.color = "red";
-                    document.getElementById("Richtalsch").innerHTML = "Zu groß!";
-                    versuche += 1;
-                    document.getElementById("eingabe").value = "";
-                    document.getElementById("versuche").innerHTML = "Versuche = " + versuche;
-                }
-            }
-        </script>
-    </body>
 </html>

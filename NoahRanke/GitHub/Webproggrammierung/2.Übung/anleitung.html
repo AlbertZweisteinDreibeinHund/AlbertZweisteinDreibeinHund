@@ -75,28 +75,46 @@
         <h1 id="h1">Die Anleitung</h1>
         <p id="r1">1. Der Computer generiert zuffälig eine Zahl, die du erraten musst</p>
         <p id="r2">2. Mit der Zeit wird er dir Tipps geben</p>
-        <p id="r3">2. r=restart +levl up -lvldown</p>
-        <p id="r4">3. Falls du sie errätst gewinnst du</p>
+        <p id="r3">3. r=restart +=lvlup -=lvldown ENTER=Los</p>
+        <p id="r4">4. Falls du sie errätst gewinnst du</p>
         <p id="Zurück">
         <a id="a" href="index.html" style=text-decoration:none>ZURÜCK</a>
         </p>
         <script>
+            überschrift_language_list = ["Die Anleitung", "The Instruction"];
+            r1_language_list = ["1. Der Computer generiert zuffälig eine Zahl, die du erraten musst", "1. The Computer randomly generates a number, that you have to guess"];
+            r2_language_list = ["2. Mit der Zeit wird er dir Tipps geben", "2. He will give you tipps over time"];
+            r3_language_list = ["3. r=restart +=lvlup -=lvldown ENTER=Los", "3. r=restart +=lvlup -=lvldown ENTER=Go"];
+            r4_language_list = ["4. Falls du sie errätst gewinnst du", "4. If you guess it, you'll win"];
+            BACK_language_list = ["Zurück","Back"]
+
+            language_index = 0;
 
             function deutsch() {
-                document.getElementById("h1").innerHTML = "Die Anleitung";
-                document.getElementById("r1").innerHTML = "1. Der Computer generiert zuffälig eine Zahl, die du erraten musst";
-                document.getElementById("r2").innerHTML = "2. Mit der Zeit wird er dir Tipps geben";
-                document.getElementById("r4").innerHTML = "3. Falls du sie errätst gewinnst du";
-                document.getElementById("a").innerHTML = "ZURÜCK";
+                language_index = 0
+                update_language()
             }
-            function english() {
-                document.getElementById("h1").innerHTML = "Da Rules";
-                document.getElementById("r1").innerHTML = "1. The Computer randomly generates a number, that you have to guess";
-                document.getElementById("r2").innerHTML = "2. He will give you tipps over time";
-                document.getElementById("r4").innerHTML = "3. If you guess it, you'll win";
-                document.getElementById("a").innerHTML = "BACK";
 
+            function english() {
+                language_index = 1
+                update_language()
             }
+
+            if (localStorage.getItem("language") == 0)
+                deutsch();
+            else
+                english();
+
+            function update_language() {
+                document.getElementById("h1").innerHTML = überschrift_language_list[language_index];
+                document.getElementById("r1").innerHTML = r1_language_list[language_index];
+                document.getElementById("r2").innerHTML = r2_language_list[language_index];
+                document.getElementById("r3").innerHTML = r3_language_list[language_index];
+                document.getElementById("r4").innerHTML = r4_language_list[language_index];
+                document.getElementById("a").innerHTML = BACK_language_list[language_index];
+                localStorage.setItem("language", language_index);
+            }
+
 
           </script>
     </body> 
