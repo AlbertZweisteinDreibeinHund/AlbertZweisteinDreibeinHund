@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Mobile Motion</title>
+        <style>
+            body {
+                text-align: center;
+                background-image: url(image1.jpeg);
+                background-size: cover;
+                color: white;
+                height: 100vh;
+                font-family: 'MedievalSharp', cursive;
+                
+            }
+            button {
+                font-size: 1vw;
+                background-color: black;
+                color: white;
+                padding: 1.2vw 4vw;
+                border-radius: 5vw;
+                border: 0.3vw solid white;
+                margin-left: 1vw;
+                margin-top: 0.5vw;
+                text-shadow: none;
+                font-family: 'MedievalSharp', cursive;
+                
+            }
+            button:hover {
+                font-size: 1vw;
+                background-color: white;
+                color: black;
+                padding: 1.2vw 4vw;
+                border-radius: 5vw;
+                border: 0.3vw solid black;
+                transition-duration: 0.2s;
+            }
+            p {
+	            width: 98vw;
+	            height: 50vh;
+	            border: thin solid;
+            }
+            
+            h1 {
+                font-size: 2vw;
+                color: black;
+                text-align: left;
+            }
+            a {
+                font-size: 3.5vw;
+                background-color: red;
+                padding: 1.2vw 4vw;
+                border-radius: 5vw;
+                border: 0.3vw solid black;
+                text-decoration: none;
+                color: black;
+                transition-duration: 0.2s;
+            }
+            a:hover {
+                color: black;
+                background-color: aqua;
+                cursor: pointer;
+                transition-duration: 0.2s;
+                border-color: white;
+                padding: 1.2vw 20vw;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div style="text-align: right;">
+            <button onclick="deutsch()">Deutsch</button><button onclick="english()">English</button>
+        </div>
+        <h1 id="h1">Innovation für die Zukunft</h1>
+        
+        <script>
+            überschrift_language_list=["Innovation für die Zukunft","Innovation for the future"]
+            input_language_list=["Name eingeben","Insert name"]
+            START_language_list=["START","START"]
+            an_language_list=["Anleitung","Instruction"]
+
+            language_index = 0;
+
+            function deutsch() {
+                language_index = 0
+                update_language()
+            }
+
+            function english() {
+                language_index = 1
+                update_language()
+            }
+
+            if (localStorage.getItem("language") == 0)
+                deutsch();
+            else
+                english();
+
+            function update_language() {
+                document.getElementById("h1").innerHTML = überschrift_language_list[language_index];
+                document.getElementById("input").placeholder = input_language_list[language_index];
+                document.getElementById("st").innerHTML = START_language_list[language_index];
+                document.getElementById("an").innerHTML = an_language_list[language_index];
+                localStorage.setItem("language", language_index);
+            }
+
+        </script>
+    </body>
+</html>
