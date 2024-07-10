@@ -116,6 +116,8 @@ class TTT(arcade.Window):
     def schlauer_zug(self):
         # Liste mit allen freien Feldern anlegen
         freie_felder_liste = self.freie_felder()
+     #   if self.spielfeld[(0, 0)] != "" or self.spielfeld[(0, 2)] != "" or self.spielfeld[(2, 0)] != "" or self.spielfeld[(2, 2)] != "":
+           # return (1, 1)
 
         # Probehalber setzen und prüfen, ob man gewinnen kann
         for feld in freie_felder_liste:
@@ -134,7 +136,7 @@ class TTT(arcade.Window):
             self.spielfeld[feld] = ""
 
         if len(freie_felder_liste) == 9:
-            ...
+            return (1, 1)
         elif len(freie_felder_liste) == 8 and self.spielfeld[(1, 1)] == "X":
             ...
 
@@ -170,6 +172,9 @@ class TTT(arcade.Window):
         if self.unentschieden() == True:
             arcade.draw_rectangle_filled(300, 300, 600, 600, arcade.make_transparent_color(arcade.color.BLACK, 190))
             arcade.draw_text("Unentschieden!", 0, 275, arcade.color.CANARY_YELLOW, font_size=60, width=600, align="center")
+
+
+    
 
 TTT()
 arcade.run()
