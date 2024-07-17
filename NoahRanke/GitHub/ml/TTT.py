@@ -88,10 +88,12 @@ class TTT(arcade.Window):
         freie_felder_liste = self.freie_felder()
         return random.choice(freie_felder_liste)
 
+    def random_eckezug(self):
+        return random.choice([(0,0),(0,2),(2,2),(2,0)])
     # Falls der Computer unmittelbar gewinnen kann, wird das Feld zurückgegeben, über der er dies kann
     # Falls nicht, aber der menschliche Spieler gewinnen kann, wird das Feld zurückgegeben, über der er dies kann
     # Falls nicht, wird ein zufälliges freies Feld zurückgegeben
-    def mittelschlauer_zug(self):
+ #   def mittelschlauer_zug(self):
         # Liste mit allen freien Feldern anlegen
         freie_felder_liste = self.freie_felder()
 
@@ -111,7 +113,7 @@ class TTT(arcade.Window):
                 return feld
             self.spielfeld[feld] = ""
 
-        return self.random_zug()
+
     
     def schlauer_zug(self):
         # Liste mit allen freien Feldern anlegen
@@ -135,15 +137,53 @@ class TTT(arcade.Window):
                 return feld
             self.spielfeld[feld] = ""
 
-        if len(freie_felder_liste) == 9:
+        if len(freie_felder_liste) == 8 and self.spielfeld[(1, 1)] != "X":
             return (1, 1)
         elif len(freie_felder_liste) == 8 and self.spielfeld[(1, 1)] == "X":
-            ...
+            return self.random_eckezug()
+        
+        if len(freie_felder_liste) == 6 and self.spielfeld[(1, 1)] == "X" and self.spielfeld[(0, 0 )] == "X":
+            return (0, 2)
+        elif len(freie_felder_liste) == 6 and self.spielfeld[(1, 1)] == "X" and self.spielfeld[(0, 2)] == "X":
+            return(0, 0)
+        
+        if len(freie_felder_liste) == 6 and self.spielfeld[(1, 1)] == "X" and self.spielfeld[(2, 2)] == "X":
+            return (2, 0)
+        elif len(freie_felder_liste) == 6 and self.spielfeld[(1, 1)] == "X" and self.spielfeld[(2, 0)] == "X":
+            return(2, 2)
+
+        if len(freie_felder_liste) == 6 and self.spielfeld[(0, 1)] == "X" and self.spielfeld[(2, 2)] == "X":
+            return(1, 0)
+        elif len(freie_felder_liste) == 6 and self.spielfeld[(0, 1)] == "X" and self.spielfeld[(1, 0)] == "X":
+            return(0, 0)
+        
+        if len(freie_felder_liste) == 6 and self.spielfeld[(2, 1)] == "X" and self.spielfeld[(1, 0)] == "X":
+            return(2, 0)
+        elif len(freie_felder_liste) == 6 and self.spielfeld[(2, 1)] == "X" and self.spielfeld[(1, 2)] == "X":
+            return(2, 2)
+        if len(freie_felder_liste) == 6 and self.spielfeld[(0, 1)] == "X" and self.spielfeld[(1, 2)] == "X":
+            return(0, 2)
+        elif len(freie_felder_liste) == 6 and self.spielfeld[(1, 0)] == "X" and self.spielfeld[(2, 2)] == "X":
+            return(2, 0)
+        if len(freie_felder_liste) == 6 and self.spielfeld[(1, 0)] == "X" and self.spielfeld[(0, 2)] == "X":
+            return(0, 0)
+        elif len(freie_felder_liste) == 6 and self.spielfeld[(1, 2)] == "X" and self.spielfeld[(0, 0)] == "X":
+            return(0, 2)
+        if len(freie_felder_liste) == 6 and self.spielfeld[(1, 2)] == "X" and self.spielfeld[(2, 0)] == "X":
+            return(2, 2)
+        elif len(freie_felder_liste) == 6 and self.spielfeld[(0, 0)] == "X" and self.spielfeld[(2, 2)] == "X":
+            return(0, 1)
+        if len(freie_felder_liste) == 6 and self.spielfeld[(0, 2)] == "X" and self.spielfeld[(2, 0)] == "X":
+            return(0, 1)
+        elif len(freie_felder_liste) == 6 and self.spielfeld[(0, 0)] == "X" and self.spielfeld[(2, 2)] == "X":
+            return(0, 1)
+        
+        return self.random_zug()
 
     # Kümmert sich darum, dass der Computerspieler setzt
     def on_update(self, delta_time):
         if self.spieler == "O" and not self.gewinnprüfung() and not len(self.freie_felder()) == 0:
-            feld = self.mittelschlauer_zug()
+            feld = self.schlauer_zug()
             self.spielfeld[feld] = "O"
             self.spieler = "X"
 
