@@ -141,42 +141,44 @@ class TTT(arcade.Window):
             return (1, 1)
         elif len(freie_felder_liste) == 8 and self.spielfeld[(1, 1)] == "X":
             return self.random_eckezug()
-        
         if len(freie_felder_liste) == 6 and self.spielfeld[(1, 1)] == "X" and self.spielfeld[(0, 0 )] == "X":
             return (0, 2)
         elif len(freie_felder_liste) == 6 and self.spielfeld[(1, 1)] == "X" and self.spielfeld[(0, 2)] == "X":
             return(0, 0)
-        
         if len(freie_felder_liste) == 6 and self.spielfeld[(1, 1)] == "X" and self.spielfeld[(2, 2)] == "X":
             return (2, 0)
         elif len(freie_felder_liste) == 6 and self.spielfeld[(1, 1)] == "X" and self.spielfeld[(2, 0)] == "X":
             return(2, 2)
-
         if len(freie_felder_liste) == 6 and self.spielfeld[(0, 1)] == "X" and self.spielfeld[(2, 2)] == "X":
             return(1, 0)
         elif len(freie_felder_liste) == 6 and self.spielfeld[(0, 1)] == "X" and self.spielfeld[(1, 0)] == "X":
             return(0, 0)
-        
         if len(freie_felder_liste) == 6 and self.spielfeld[(2, 1)] == "X" and self.spielfeld[(1, 0)] == "X":
             return(2, 0)
         elif len(freie_felder_liste) == 6 and self.spielfeld[(2, 1)] == "X" and self.spielfeld[(1, 2)] == "X":
             return(2, 2)
-        if len(freie_felder_liste) == 6 and self.spielfeld[(0, 1)] == "X" and self.spielfeld[(1, 2)] == "X":
+        elif len(freie_felder_liste) == 6 and self.spielfeld[(0, 1)] == "X" and self.spielfeld[(1, 2)] == "X":
             return(0, 2)
         elif len(freie_felder_liste) == 6 and self.spielfeld[(1, 0)] == "X" and self.spielfeld[(2, 2)] == "X":
             return(2, 0)
-        if len(freie_felder_liste) == 6 and self.spielfeld[(1, 0)] == "X" and self.spielfeld[(0, 2)] == "X":
+        elif len(freie_felder_liste) == 6 and self.spielfeld[(1, 0)] == "X" and self.spielfeld[(0, 2)] == "X":
             return(0, 0)
         elif len(freie_felder_liste) == 6 and self.spielfeld[(1, 2)] == "X" and self.spielfeld[(0, 0)] == "X":
             return(0, 2)
-        if len(freie_felder_liste) == 6 and self.spielfeld[(1, 2)] == "X" and self.spielfeld[(2, 0)] == "X":
+        elif len(freie_felder_liste) == 6 and self.spielfeld[(1, 2)] == "X" and self.spielfeld[(2, 0)] == "X":
             return(2, 2)
         elif len(freie_felder_liste) == 6 and self.spielfeld[(0, 0)] == "X" and self.spielfeld[(2, 2)] == "X":
             return(0, 1)
-        if len(freie_felder_liste) == 6 and self.spielfeld[(0, 2)] == "X" and self.spielfeld[(2, 0)] == "X":
+        elif len(freie_felder_liste) == 6 and self.spielfeld[(0, 2)] == "X" and self.spielfeld[(2, 0)] == "X":
             return(0, 1)
         elif len(freie_felder_liste) == 6 and self.spielfeld[(0, 0)] == "X" and self.spielfeld[(2, 2)] == "X":
             return(0, 1)
+        elif len(freie_felder_liste) == 6 and self.spielfeld[(0, 0)] == "X" and self.spielfeld[(2, 1)] == "X":
+            return (2,0)
+        elif len(freie_felder_liste) == 6 and self.spielfeld[(0, 1)] == "X" and self.spielfeld[(2, 0)] == "X":
+            return (0,0)
+        elif len(freie_felder_liste) == 6 and self.spielfeld[(0, 2)] == "X" and self.spielfeld[(1, 2)] == "X":
+            return (2,2)
         
         return self.random_zug()
 
@@ -213,6 +215,27 @@ class TTT(arcade.Window):
             arcade.draw_rectangle_filled(300, 300, 600, 600, arcade.make_transparent_color(arcade.color.BLACK, 190))
             arcade.draw_text("Unentschieden!", 0, 275, arcade.color.CANARY_YELLOW, font_size=60, width=600, align="center")
 
+    def bewertung(self, maximierend, symbol ):
+        if self.unentschieden() == True:
+            return 0;
+        else:
+            if maximierend == True :
+                if self.gewinnprüfung() == True:
+                    if self.spieler() == True:
+                        return -1;
+                    else:
+                        return 1;
+                else:
+                    pass
+            elif maximierend == False:
+                if self.gewinnprüfung() == True:
+                    if self.spieler() == True:
+                        return 1;
+                    else:
+                        return -1;
+                else:
+                    pass
+            
 
     
 
